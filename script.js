@@ -113,3 +113,11 @@ function revealHotelContacts() {
   btn.querySelector('.en').textContent = isVisible ? 'Hide contacts →' : 'Show contacts →';
 }
 
+
+// Back to top button
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+  window.addEventListener('scroll', function() {
+    backToTop.classList.toggle('visible', window.scrollY > 400);
+  });
+}

@@ -386,3 +386,27 @@ body.lang-en span.en { display: inline; }
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* BACK TO TOP */
+.back-to-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 100;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bg); border: 1px solid rgba(122,98,72,0.25);
+  color: var(--sepia); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s, border-color 0.2s;
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { border-color: var(--sepia); }
+
+/* MOUSE WHEEL ANIMATION */
+.scroll-indicator svg line {
+  animation: wheelScroll 1.4s ease-in-out infinite;
+}
+@keyframes wheelScroll {
+  0%   { transform: translateY(0); opacity: 1; }
+  60%  { transform: translateY(4px); opacity: 0; }
+  61%  { transform: translateY(0); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
