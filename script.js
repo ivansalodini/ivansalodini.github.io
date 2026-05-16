@@ -3,10 +3,6 @@ const dropdownText = {
   'select-attending': {
     it: ['', 'Sì, ci saremo!', 'Purtroppo non possiamo'],
     en: ['', "Yes, we'll be there!", "Sorry, we can't make it"]
-  },
-  'select-guests': {
-    it: ['Solo io', '2', '3', '4'],
-    en: ['Just me', '2', '3', '4']
   }
 };
 
@@ -105,4 +101,14 @@ function revealPrices() {
   const isVisible = display.classList.contains('visible');
   btn.querySelector('.it').textContent = isVisible ? 'Nascondi tariffe →' : 'Mostra tariffe →';
   btn.querySelector('.en').textContent = isVisible ? 'Hide rates →' : 'Show rates →';
+}
+
+// Hotel contacts reveal / hide toggle
+function revealHotelContacts() {
+  const display = document.getElementById('hotelContactsDisplay');
+  const btn = document.getElementById('hotelContactsBtn');
+  display.classList.toggle('visible');
+  const isVisible = display.classList.contains('visible');
+  btn.querySelector('.it').textContent = isVisible ? 'Nascondi contatti →' : 'Mostra contatti →';
+  btn.querySelector('.en').textContent = isVisible ? 'Hide contacts →' : 'Show contacts →';
 }
