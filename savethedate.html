@@ -22,8 +22,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 10vh 8vw 8vh;
+    justify-content: center;
+    gap: 6vh;
   }
 
   /* ── TOP: SAVE the DATE ─────────────────────────────── */
@@ -147,15 +149,15 @@
   }
   .site-link a {
     font-family: 'EB Garamond', serif;
-    font-size: 12px; font-weight: 400;
-    letter-spacing: 0.2em;
-    color: rgba(155,139,122,0.5);
+    font-size: 15px; font-weight: 400;
+    letter-spacing: 0.25em;
+    color: #9B8B7A;
     text-decoration: none;
-    border-bottom: 1px solid rgba(155,139,122,0.2);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
+    border-bottom: 1px solid rgba(155,139,122,0.5);
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s, opacity 0.2s;
   }
-  .site-link a:hover { color: #9B8B7A; border-color: #9B8B7A; }
+  .site-link a:hover { opacity: 0.7; }
   @font-face {
     font-family: 'Slight';
     src: url('Slight.otf') format('opentype');
