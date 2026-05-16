@@ -1,90 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ivan & Alessia — 12 June 2027</title>
+<title>Ivan & Alessia — 12 Giugno 2027</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #FAF7F2;
-    --warm: #F0E8DC;
+    --bg: #FFF8F3;
+    --warm: #F5EDE6;
     --gold: #B8975A;
     --gold-light: #D4B483;
-    --dark: #2C2318;
-    --mid: #6B5744;
+    --dark: #000000;
+    --mid: #B1A1A1;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Jost', sans-serif;
   }
 
   html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--dark); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
 
-  body {
-    background: var(--cream);
-    color: var(--dark);
-    font-family: var(--sans);
-    font-weight: 300;
-    overflow-x: hidden;
+  .lang-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; justify-content: flex-end; align-items: center;
+    padding: 0.5rem 1.5rem; gap: 0.5rem;
+    background: rgba(255,248,243,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,151,90,0.15);
   }
+  .lang-btn {
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--mid); background: none; border: none; cursor: pointer;
+    padding: 3px 6px; transition: color 0.2s;
+  }
+  .lang-btn.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  .lang-sep { color: var(--mid); font-size: 10px; }
 
-  /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: center; gap: 2.5rem;
-    padding: 1.25rem 2rem;
-    background: rgba(250,247,242,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(184,151,90,0.2);
+    position: fixed; top: 30px; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    padding: 0.9rem 2rem;
+    background: rgba(255,248,243,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,151,90,0.13);
   }
   nav a {
-    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
     letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--mid); text-decoration: none;
-    transition: color 0.2s;
+    color: var(--mid); text-decoration: none; transition: color 0.2s;
   }
   nav a:hover { color: var(--gold); }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    position: relative;
-    overflow: hidden;
+    text-align: center; padding: 9rem 2rem 4rem; position: relative; overflow: hidden;
   }
   .hero::before {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(184,151,90,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(184,151,90,0.06) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(184,151,90,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(184,151,90,0.05) 0%, transparent 70%);
   }
   .hero-ornament {
     font-family: var(--serif); font-size: 13px; font-weight: 300;
-    letter-spacing: 0.3em; color: var(--gold);
-    text-transform: uppercase; margin-bottom: 2rem;
-    opacity: 0; animation: fadeUp 1s 0.2s forwards;
+    letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s 0.2s forwards;
   }
   .hero h1 {
     font-family: var(--serif); font-size: clamp(4rem, 12vw, 9rem);
-    font-weight: 300; line-height: 0.9;
-    color: var(--dark); letter-spacing: -0.01em;
+    font-weight: 300; line-height: 0.9; color: var(--dark);
     opacity: 0; animation: fadeUp 1s 0.4s forwards;
   }
   .hero h1 em { font-style: italic; color: var(--gold); }
   .hero-date {
-    margin-top: 2rem;
-    font-family: var(--sans); font-size: 12px; font-weight: 400;
+    margin-top: 2rem; font-size: 11px; font-weight: 400;
     letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid);
     opacity: 0; animation: fadeUp 1s 0.6s forwards;
   }
   .hero-divider {
     width: 1px; height: 60px; background: var(--gold-light);
-    margin: 2.5rem auto 0;
-    opacity: 0; animation: fadeUp 1s 0.8s forwards;
+    margin: 2.5rem auto 0; opacity: 0; animation: fadeUp 1s 0.8s forwards;
   }
   .countdown {
     display: flex; gap: 2.5rem; margin-top: 2.5rem;
@@ -105,11 +102,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* SECTIONS */
-  section {
-    padding: 6rem 2rem;
-    max-width: 780px; margin: 0 auto;
-  }
+  section { padding: 6rem 2rem; max-width: 780px; margin: 0 auto; }
   .section-label {
     font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--gold); font-weight: 500; margin-bottom: 1rem;
@@ -117,417 +110,440 @@
   }
   .section-label::after {
     content: ''; flex: 1; height: 1px;
-    background: linear-gradient(to right, rgba(184,151,90,0.4), transparent);
+    background: linear-gradient(to right, rgba(184,151,90,0.35), transparent);
   }
   h2 {
     font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 300; line-height: 1.1; color: var(--dark);
-    margin-bottom: 2.5rem;
+    font-weight: 300; line-height: 1.1; color: var(--dark); margin-bottom: 2.5rem;
   }
   h2 em { font-style: italic; color: var(--gold); }
   p { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 1rem; }
-
   .divider {
-    width: 100%; height: 1px;
-    background: linear-gradient(to right, transparent, rgba(184,151,90,0.3), transparent);
-    margin: 2rem 0;
+    height: 1px; max-width: 780px; margin: 0 auto;
+    background: linear-gradient(to right, transparent, rgba(184,151,90,0.25), transparent);
   }
 
-  /* CEREMONY DETAILS */
   .details-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem; margin-top: 2rem;
   }
   .detail-card {
-    background: var(--warm); border: 1px solid rgba(184,151,90,0.2);
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.18);
     border-radius: 4px; padding: 1.5rem;
   }
   .detail-card-label {
     font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
     color: var(--gold); margin-bottom: 0.75rem; display: block;
   }
-  .detail-card-value {
-    font-family: var(--serif); font-size: 1.3rem; color: var(--dark);
-    line-height: 1.3;
+  .detail-card-value { font-family: var(--serif); font-size: 1.3rem; color: var(--dark); line-height: 1.3; }
+  .detail-card-sub { font-size: 12px; color: var(--mid); margin-top: 6px; display: block; line-height: 1.6; }
+  .map-link {
+    display: inline-block; margin-top: 10px; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+    text-decoration: none; border-bottom: 1px solid rgba(184,151,90,0.3);
+    transition: border-color 0.2s;
   }
-  .detail-card-sub {
-    font-size: 12px; color: var(--mid); margin-top: 4px; display: block;
-  }
+  .map-link:hover { border-color: var(--gold); }
 
-  /* SCHEDULE */
   .schedule-list { margin-top: 2rem; }
   .schedule-item {
     display: flex; gap: 1.5rem; padding: 1.25rem 0;
-    border-bottom: 1px solid rgba(184,151,90,0.15);
-    align-items: flex-start;
+    border-bottom: 1px solid rgba(177,161,161,0.15); align-items: flex-start;
   }
   .schedule-item:last-child { border-bottom: none; }
-  .sch-time {
-    font-family: var(--serif); font-size: 1.1rem; color: var(--gold);
-    min-width: 60px; padding-top: 2px;
-  }
-  .sch-content h3 {
-    font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
-    color: var(--dark); margin-bottom: 4px;
-  }
+  .sch-time { font-family: var(--serif); font-size: 1.1rem; color: var(--gold); min-width: 60px; padding-top: 2px; }
+  .sch-content h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--dark); margin-bottom: 4px; }
   .sch-content p { font-size: 13px; color: var(--mid); margin: 0; line-height: 1.6; }
 
-  /* DRESS CODE */
-  .dress-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;
-  }
-  .dress-card {
-    border: 1px solid rgba(184,151,90,0.25); border-radius: 4px; padding: 1.5rem;
-    text-align: center;
-  }
-  .dress-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-  .dress-title {
-    font-family: var(--serif); font-size: 1.1rem; color: var(--dark);
-    margin-bottom: 0.5rem;
-  }
-  .dress-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
-
-  /* TRAVEL */
   .travel-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
   .travel-item {
-    display: flex; gap: 1rem; align-items: flex-start;
+    display: flex; gap: 1.25rem; align-items: flex-start;
     padding: 1.25rem; background: var(--warm);
     border-radius: 4px; border: 1px solid rgba(184,151,90,0.15);
   }
-  .travel-icon { font-size: 1.4rem; flex-shrink: 0; }
-  .travel-item h3 {
-    font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
-    color: var(--dark); margin-bottom: 4px;
-  }
+  .travel-icon { flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .travel-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+  .travel-item h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--dark); margin-bottom: 4px; }
   .travel-item p { font-size: 13px; color: var(--mid); margin: 0; line-height: 1.6; }
 
-  /* GIFT REGISTRY */
   .registry-box {
-    background: var(--warm); border: 1px solid rgba(184,151,90,0.25);
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.2);
     border-radius: 4px; padding: 2.5rem; text-align: center; margin-top: 2rem;
   }
   .registry-box p { max-width: 500px; margin: 0 auto 1.5rem; }
   .registry-link {
     display: inline-block; padding: 0.75rem 2rem;
     border: 1px solid var(--gold); color: var(--gold);
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    text-decoration: none; border-radius: 2px;
-    transition: all 0.2s;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px; transition: all 0.2s;
   }
-  .registry-link:hover { background: var(--gold); color: var(--cream); }
+  .registry-link:hover { background: var(--gold); color: var(--bg); }
 
-  /* RSVP FORM */
   .rsvp-form { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group label {
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); font-weight: 500;
-  }
+  .form-group label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
   .form-group input,
   .form-group select,
   .form-group textarea {
-    background: var(--warm); border: 1px solid rgba(184,151,90,0.3);
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.25);
     border-radius: 2px; padding: 0.75rem 1rem;
     font-family: var(--sans); font-size: 14px; font-weight: 300;
-    color: var(--dark); outline: none;
-    transition: border-color 0.2s;
+    color: var(--dark); outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none; appearance: none;
   }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
   .form-group textarea { resize: vertical; min-height: 100px; }
   .submit-btn {
-    align-self: flex-start;
-    padding: 0.85rem 2.5rem;
-    background: var(--gold); color: var(--cream);
-    border: none; border-radius: 2px; cursor: pointer;
-    font-family: var(--sans); font-size: 11px;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    font-weight: 500; transition: background 0.2s;
+    align-self: flex-start; padding: 0.85rem 2.5rem;
+    background: var(--gold); color: var(--bg); border: none; border-radius: 2px;
+    cursor: pointer; font-family: var(--sans); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.2s;
   }
   .submit-btn:hover { background: var(--dark); }
   .form-success {
-    display: none; padding: 1.5rem; background: var(--warm);
-    border: 1px solid rgba(184,151,90,0.3); border-radius: 4px;
-    text-align: center; font-family: var(--serif); font-size: 1.3rem;
-    color: var(--dark);
+    display: none; padding: 2rem; background: var(--warm);
+    border: 1px solid rgba(184,151,90,0.25); border-radius: 4px;
+    text-align: center; font-family: var(--serif); font-size: 1.4rem;
+    color: var(--dark); font-style: italic;
   }
 
-  /* FOOTER */
   footer {
     text-align: center; padding: 3rem 2rem;
-    border-top: 1px solid rgba(184,151,90,0.2);
-    font-family: var(--serif); font-size: 1.1rem;
-    font-style: italic; color: var(--mid);
+    border-top: 1px solid rgba(184,151,90,0.15);
+    font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: var(--mid);
   }
 
   @media (max-width: 600px) {
     .form-row { grid-template-columns: 1fr; }
-    .dress-grid { grid-template-columns: 1fr; }
-    nav { gap: 1.2rem; flex-wrap: wrap; }
+    nav { gap: 1rem; }
   }
+
+  .it { display: block; }
+  .en { display: none; }
+  body.lang-en .it { display: none; }
+  body.lang-en .en { display: block; }
+  span.it { display: inline; }
+  span.en { display: none; }
+  body.lang-en span.it { display: none; }
+  body.lang-en span.en { display: inline; }
 </style>
 </head>
 <body>
 
+<div class="lang-bar">
+  <button class="lang-btn active" id="btn-it" onclick="setLang('it')">IT</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
 <nav>
-  <a href="#ceremony">Ceremony</a>
-  <a href="#schedule">Schedule</a>
-  <a href="#dresscode">Dress code</a>
-  <a href="#travel">Travel</a>
-  <a href="#registry">Registry</a>
+  <a href="#ceremony"><span class="it">Cerimonia</span><span class="en">Ceremony</span></a>
+  <a href="#schedule"><span class="it">Programma</span><span class="en">Schedule</span></a>
+  <a href="#travel"><span class="it">Come arrivare</span><span class="en">Travel</span></a>
+  <a href="#registry"><span class="it">Lista nozze</span><span class="en">Registry</span></a>
   <a href="#rsvp">RSVP</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-ornament">We are getting married</div>
+  <div class="hero-ornament">
+    <span class="it">Ci sposiamo</span><span class="en">We are getting married</span>
+  </div>
   <h1>Ivan<br>&amp; <em>Alessia</em></h1>
-  <div class="hero-date">Saturday · 12 June 2027 · [[ CITY ]]</div>
+  <div class="hero-date">
+    <span class="it">Sabato · 12 Giugno 2027 · Varese</span>
+    <span class="en">Saturday · 12 June 2027 · Varese</span>
+  </div>
   <div class="hero-divider"></div>
   <div class="countdown">
     <div class="countdown-item">
       <span class="countdown-num" id="cd-days">—</span>
-      <span class="countdown-label">Days</span>
+      <span class="countdown-label"><span class="it">Giorni</span><span class="en">Days</span></span>
     </div>
     <div class="countdown-item">
       <span class="countdown-num" id="cd-hours">—</span>
-      <span class="countdown-label">Hours</span>
+      <span class="countdown-label"><span class="it">Ore</span><span class="en">Hours</span></span>
     </div>
     <div class="countdown-item">
       <span class="countdown-num" id="cd-mins">—</span>
-      <span class="countdown-label">Minutes</span>
+      <span class="countdown-label"><span class="it">Minuti</span><span class="en">Minutes</span></span>
     </div>
   </div>
 </div>
 
-<!-- CEREMONY -->
 <section id="ceremony">
-  <div class="section-label">The ceremony</div>
-  <h2>Where &amp; <em>when</em></h2>
-  <p>We can't wait to celebrate this special day with you. Here are all the details you need to join us.</p>
+  <div class="section-label it">La cerimonia</div>
+  <div class="section-label en">The ceremony</div>
+  <h2 class="it">Dove &amp; <em>quando</em></h2>
+  <h2 class="en">Where &amp; <em>when</em></h2>
+  <p class="it">Non vediamo l'ora di celebrare questo giorno speciale insieme a voi. Ecco tutti i dettagli di cui avete bisogno.</p>
+  <p class="en">We can't wait to celebrate this special day with you. Here are all the details you need.</p>
   <div class="details-grid">
     <div class="detail-card">
-      <span class="detail-card-label">Venue</span>
-      <div class="detail-card-value">[[ VENUE NAME ]]</div>
-      <span class="detail-card-sub">[[ FULL ADDRESS ]]</span>
+      <span class="detail-card-label it">Chiesa</span>
+      <span class="detail-card-label en">Church</span>
+      <div class="detail-card-value">Chiesa di Sant'Antonio Abate</div>
+      <span class="detail-card-sub">Varese, Italia</span>
+      <a href="https://maps.app.goo.gl/4VHxfXzosDkDR2PS9" class="map-link" target="_blank">
+        <span class="it">Apri in Maps →</span><span class="en">Open in Maps →</span>
+      </a>
     </div>
     <div class="detail-card">
-      <span class="detail-card-label">Date</span>
-      <div class="detail-card-value">Saturday<br>12 June 2027</div>
+      <span class="detail-card-label it">Ricevimento</span>
+      <span class="detail-card-label en">Reception</span>
+      <div class="detail-card-value">Villa Esengrini Montalbano</div>
+      <span class="detail-card-sub">Varese, Italia</span>
+      <a href="https://maps.app.goo.gl/q679ve2Z2m2urk7M8" class="map-link" target="_blank">
+        <span class="it">Apri in Maps →</span><span class="en">Open in Maps →</span>
+      </a>
     </div>
     <div class="detail-card">
-      <span class="detail-card-label">Ceremony begins</span>
-      <div class="detail-card-value">[[ TIME, e.g. 3:00 PM ]]</div>
-      <span class="detail-card-sub">Doors open at [[ TIME ]]</span>
+      <span class="detail-card-label it">Inizio cerimonia</span>
+      <span class="detail-card-label en">Ceremony begins</span>
+      <div class="detail-card-value">16:00</div>
+      <span class="detail-card-sub">
+        <span class="it">Le porte aprono alle 15:30</span>
+        <span class="en">Doors open at 15:30</span>
+      </span>
     </div>
     <div class="detail-card">
-      <span class="detail-card-label">Reception ends</span>
-      <div class="detail-card-value">[[ END TIME ]]</div>
-      <span class="detail-card-sub">Dinner &amp; dancing</span>
+      <span class="detail-card-label it">Parcheggio</span>
+      <span class="detail-card-label en">Parking</span>
+      <div class="detail-card-value">Villa Esengrini</div>
+      <span class="detail-card-sub">
+        <span class="it">Il parcheggio della Villa è disponibile fin dall'arrivo — usatelo anche per la cerimonia in chiesa, che è a pochi passi a piedi.</span>
+        <span class="en">The Villa's parking is available from the start — use it for the church ceremony too, which is just a short walk away.</span>
+      </span>
     </div>
   </div>
 </section>
 
-<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+<div class="divider"></div>
 
-<!-- SCHEDULE -->
 <section id="schedule">
-  <div class="section-label">The day</div>
-  <h2>Day <em>schedule</em></h2>
+  <div class="section-label it">La giornata</div>
+  <div class="section-label en">The day</div>
+  <h2 class="it">Il <em>programma</em></h2>
+  <h2 class="en">Day <em>schedule</em></h2>
   <div class="schedule-list">
     <div class="schedule-item">
-      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-time">15:30</div>
       <div class="sch-content">
-        <h3>Guests arrive</h3>
-        <p>Doors open, welcome drinks served</p>
+        <h3 class="it">Arrivo degli ospiti</h3>
+        <h3 class="en">Guests arrive</h3>
+        <p class="it">Parcheggio a Villa Esengrini, poi a piedi alla chiesa</p>
+        <p class="en">Park at Villa Esengrini, then walk to the church</p>
       </div>
     </div>
     <div class="schedule-item">
-      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-time">16:00</div>
       <div class="sch-content">
-        <h3>Ceremony</h3>
-        <p>[[ Brief description, e.g. Civil ceremony in the garden ]]</p>
+        <h3 class="it">Cerimonia</h3>
+        <h3 class="en">Ceremony</h3>
+        <p>Chiesa di Sant'Antonio Abate</p>
       </div>
     </div>
     <div class="schedule-item">
-      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-time">[[ ]]</div>
       <div class="sch-content">
-        <h3>Cocktail hour</h3>
-        <p>Drinks, canapés &amp; photos with the couple</p>
+        <h3 class="it">Aperitivo</h3>
+        <h3 class="en">Cocktail hour</h3>
+        <p class="it">Benvenuto a Villa Esengrini Montalbano</p>
+        <p class="en">Welcome drinks at Villa Esengrini Montalbano</p>
       </div>
     </div>
     <div class="schedule-item">
-      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-time">[[ ]]</div>
       <div class="sch-content">
-        <h3>Dinner</h3>
-        <p>[[ Brief description ]]</p>
+        <h3 class="it">Cena</h3>
+        <h3 class="en">Dinner</h3>
+        <p class="it">[[ Descrizione ]]</p>
+        <p class="en">[[ Description ]]</p>
       </div>
     </div>
     <div class="schedule-item">
-      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-time">[[ ]]</div>
       <div class="sch-content">
-        <h3>Dancing &amp; celebrations</h3>
-        <p>Let the party begin!</p>
+        <h3 class="it">Ballo &amp; festa</h3>
+        <h3 class="en">Dancing &amp; celebrations</h3>
+        <p class="it">Che la festa abbia inizio!</p>
+        <p class="en">Let the party begin!</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+<div class="divider"></div>
 
-<!-- DRESS CODE -->
-<section id="dresscode">
-  <div class="section-label">Dress code</div>
-  <h2>What to <em>wear</em></h2>
-  <p>We'd love for our guests to dress elegantly. Here are some guidelines to help you choose your outfit.</p>
-  <div class="dress-grid">
-    <div class="dress-card">
-      <div class="dress-icon">👗</div>
-      <div class="dress-title">For her</div>
-      <div class="dress-desc">[[ e.g. Cocktail dress or elegant midi. Florals and pastels welcome. ]]</div>
-    </div>
-    <div class="dress-card">
-      <div class="dress-icon">🤵</div>
-      <div class="dress-title">For him</div>
-      <div class="dress-desc">[[ e.g. Suit and tie. Light colours encouraged for a summer feel. ]]</div>
-    </div>
-  </div>
-  <p style="margin-top:1.5rem; font-size:13px;">
-    Please avoid wearing white, ivory, or cream — those are reserved for the bride. Thank you!
-  </p>
-</section>
-
-<div class="divider" style="max-width:780px;margin:0 auto;"></div>
-
-<!-- TRAVEL -->
 <section id="travel">
-  <div class="section-label">Getting there</div>
-  <h2>Travel &amp; <em>accommodation</em></h2>
-  <p>We want getting there to be as easy as possible. Here's everything you need to know.</p>
+  <div class="section-label it">Come arrivare</div>
+  <div class="section-label en">Getting there</div>
+  <h2 class="it">Viaggio &amp; <em>alloggio</em></h2>
+  <h2 class="en">Travel &amp; <em>accommodation</em></h2>
+  <p class="it">Vogliamo che raggiungere il luogo sia il più semplice possibile. Ecco tutto quello che vi serve sapere.</p>
+  <p class="en">We want getting there to be as easy as possible. Here's everything you need to know.</p>
   <div class="travel-list">
+
     <div class="travel-item">
-      <div class="travel-icon">✈️</div>
+      <div class="travel-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>
+        </svg>
+      </div>
       <div>
-        <h3>By plane</h3>
-        <p>[[ e.g. The nearest airport is XX, about 30 min from the venue by taxi. ]]</p>
+        <h3 class="it">In aereo</h3>
+        <h3 class="en">By plane</h3>
+        <p class="it">[[ es. L'aeroporto più vicino è Milano Malpensa (MXP), a circa 30 minuti in taxi. ]]</p>
+        <p class="en">[[ e.g. The nearest airport is Milan Malpensa (MXP), about 30 minutes by taxi. ]]</p>
       </div>
     </div>
+
     <div class="travel-item">
-      <div class="travel-icon">🚂</div>
+      <div class="travel-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="4" width="18" height="12" rx="2"/>
+          <path d="M3 9h18M8 4v12M16 4v12M1 20h4M19 20h4M5 20l2-4M19 20l-2-4"/>
+        </svg>
+      </div>
       <div>
-        <h3>By train</h3>
-        <p>[[ e.g. Take the train to XX station, then a 10-minute taxi to the venue. ]]</p>
+        <h3 class="it">In treno</h3>
+        <h3 class="en">By train</h3>
+        <p class="it">[[ es. Prendi il treno fino alla stazione di Varese, poi un taxi di circa 10 minuti. ]]</p>
+        <p class="en">[[ e.g. Take the train to Varese station, then a 10-minute taxi ride. ]]</p>
       </div>
     </div>
+
     <div class="travel-item">
-      <div class="travel-icon">🚗</div>
+      <div class="travel-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 17H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h11l3 4v5a2 2 0 0 1-2 2z"/>
+          <circle cx="7.5" cy="17.5" r="1.5"/>
+          <circle cx="16.5" cy="17.5" r="1.5"/>
+          <path d="M5 12h14M12 6v6"/>
+        </svg>
+      </div>
       <div>
-        <h3>By car</h3>
-        <p>[[ e.g. Free parking available on site. Enter via the main gate on Via XX. ]]</p>
+        <h3 class="it">In auto</h3>
+        <h3 class="en">By car</h3>
+        <p class="it">Parcheggio gratuito disponibile a Villa Esengrini Montalbano fin dall'arrivo degli ospiti. Parcheggiate lì e raggiungete a piedi la chiesa di Sant'Antonio Abate, a pochi minuti di cammino.</p>
+        <p class="en">Free parking is available at Villa Esengrini Montalbano from the start. Park there and walk to the church of Sant'Antonio Abate — just a few minutes on foot.</p>
       </div>
     </div>
+
     <div class="travel-item">
-      <div class="travel-icon">🏨</div>
+      <div class="travel-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
       <div>
-        <h3>Where to stay</h3>
-        <p>[[ e.g. We recommend Hotel XX (5 min away) or Hotel YY in the town centre. A room block has been reserved — mention "Ivan & Alessia wedding" when booking. ]]</p>
+        <h3 class="it">Dove alloggiare</h3>
+        <h3 class="en">Where to stay</h3>
+        <p class="it">[[ es. Consigliamo l'Hotel XX (5 minuti dalla Villa) o l'Hotel YY nel centro di Varese. Menzionate "Matrimonio Ivan &amp; Alessia" per eventuali tariffe riservate. ]]</p>
+        <p class="en">[[ e.g. We recommend Hotel XX (5 min from the Villa) or Hotel YY in Varese centre. Mention "Ivan &amp; Alessia wedding" for any reserved rates. ]]</p>
       </div>
     </div>
+
   </div>
 </section>
 
-<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+<div class="divider"></div>
 
-<!-- REGISTRY -->
 <section id="registry">
-  <div class="section-label">Gift registry</div>
-  <h2>A little <em>wish list</em></h2>
+  <div class="section-label it">Lista nozze</div>
+  <div class="section-label en">Gift registry</div>
+  <h2 class="it">I nostri <em>desideri</em></h2>
+  <h2 class="en">Our <em>wish list</em></h2>
   <div class="registry-box">
-    <p>Your presence is the greatest gift of all. If you'd like to give something, we have put together a small wish list — or a contribution to our honeymoon fund is always welcome.</p>
-    <a href="[[ REGISTRY URL ]]" class="registry-link" target="_blank">View our registry</a>
+    <p class="it">La vostra presenza è il regalo più grande. Se desiderate donarci qualcosa, abbiamo preparato una piccola lista — o un contributo al nostro viaggio di nozze è sempre benvenuto.</p>
+    <p class="en">Your presence is the greatest gift of all. If you'd like to give something, we have put together a small wish list — or a contribution to our honeymoon fund is always welcome.</p>
+    <a href="[[ REGISTRY URL ]]" class="registry-link" target="_blank">
+      <span class="it">Vedi la lista nozze</span><span class="en">View our registry</span>
+    </a>
   </div>
 </section>
 
-<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+<div class="divider"></div>
 
-<!-- RSVP -->
 <section id="rsvp">
   <div class="section-label">RSVP</div>
-  <h2>Will you <em>join us?</em></h2>
-  <p>Please let us know by <strong>[[ RSVP DEADLINE, e.g. 1 May 2027 ]]</strong> so we can plan accordingly. We can't wait to celebrate with you!</p>
+  <h2 class="it">Ci <em>sarete?</em></h2>
+  <h2 class="en">Will you <em>join us?</em></h2>
+  <p class="it">Confermate la vostra presenza entro il <strong style="color:var(--dark)">[[ SCADENZA, es. 1 Maggio 2027 ]]</strong> così possiamo organizzarci al meglio.</p>
+  <p class="en">Please let us know by <strong style="color:var(--dark)">[[ RSVP DEADLINE, e.g. 1 May 2027 ]]</strong> so we can plan accordingly.</p>
 
   <form class="rsvp-form" id="rsvpForm" onsubmit="handleRSVP(event)">
     <div class="form-row">
       <div class="form-group">
-        <label for="fname">First name</label>
-        <input type="text" id="fname" name="fname" required placeholder="Ivan">
+        <label><span class="it">Nome</span><span class="en">First name</span></label>
+        <input type="text" name="fname" required>
       </div>
       <div class="form-group">
-        <label for="lname">Last name</label>
-        <input type="text" id="lname" name="lname" required placeholder="Rossi">
+        <label><span class="it">Cognome</span><span class="en">Last name</span></label>
+        <input type="text" name="lname" required>
       </div>
     </div>
     <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" id="email" name="email" required placeholder="ivan@example.com">
+      <label><span class="it">Indirizzo email</span><span class="en">Email address</span></label>
+      <input type="email" name="email" required>
     </div>
     <div class="form-row">
       <div class="form-group">
-        <label for="attending">Are you attending?</label>
-        <select id="attending" name="attending" required>
-          <option value="">Please select</option>
-          <option value="yes">Yes, I'll be there!</option>
-          <option value="no">Sorry, I can't make it</option>
+        <label><span class="it">Parteciperete?</span><span class="en">Are you attending?</span></label>
+        <select name="attending" required>
+          <option value=""></option>
+          <option value="yes"><span class="it">Sì, ci saremo!</span><span class="en">Yes, we'll be there!</span></option>
+          <option value="no"><span class="it">Purtroppo non possiamo</span><span class="en">Sorry, we can't make it</span></option>
         </select>
       </div>
       <div class="form-group">
-        <label for="guests">Number of guests</label>
-        <select id="guests" name="guests">
-          <option value="1">Just me</option>
-          <option value="2">2 people</option>
-          <option value="3">3 people</option>
-          <option value="4">4 people</option>
+        <label><span class="it">Numero di ospiti</span><span class="en">Number of guests</span></label>
+        <select name="guests">
+          <option value="1"><span class="it">Solo io</span><span class="en">Just me</span></option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
         </select>
       </div>
     </div>
     <div class="form-group">
-      <label for="dietary">Dietary requirements</label>
-      <input type="text" id="dietary" name="dietary" placeholder="Vegetarian, allergies, etc. Leave blank if none">
+      <label><span class="it">Intolleranze alimentari</span><span class="en">Dietary requirements</span></label>
+      <input type="text" name="dietary">
     </div>
     <div class="form-group">
-      <label for="message">A message for the couple</label>
-      <textarea id="message" name="message" placeholder="Optional — we'd love to hear from you!"></textarea>
+      <label><span class="it">Un messaggio per gli sposi</span><span class="en">A message for the couple</span></label>
+      <textarea name="message"></textarea>
     </div>
-    <button type="submit" class="submit-btn">Send my RSVP</button>
+    <button type="submit" class="submit-btn">
+      <span class="it">Invia la conferma</span><span class="en">Send my RSVP</span>
+    </button>
   </form>
   <div class="form-success" id="formSuccess">
-    Thank you! We've received your RSVP and we can't wait to celebrate with you. 🤍
+    <span class="it">Grazie! Abbiamo ricevuto la vostra conferma — non vediamo l'ora di festeggiare insieme.</span>
+    <span class="en">Thank you! We've received your RSVP and we can't wait to celebrate with you.</span>
   </div>
 </section>
 
 <footer>
-  Ivan &amp; Alessia · 12 June 2027
+  Ivan &amp; Alessia &nbsp;·&nbsp; 12 <span class="it">Giugno</span><span class="en">June</span> 2027
 </footer>
 
 <script>
-  const wedding = new Date('2027-06-12T15:00:00');
+  function setLang(lang) {
+    document.body.className = lang === 'en' ? 'lang-en' : '';
+    document.getElementById('btn-it').classList.toggle('active', lang === 'it');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+
+  const wedding = new Date('2027-06-12T16:00:00');
   function updateCountdown() {
-    const now = new Date();
-    const diff = wedding - now;
-    if (diff <= 0) {
-      document.getElementById('cd-days').textContent = '0';
-      document.getElementById('cd-hours').textContent = '0';
-      document.getElementById('cd-mins').textContent = '0';
-      return;
-    }
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    document.getElementById('cd-days').textContent = days;
-    document.getElementById('cd-hours').textContent = hours;
-    document.getElementById('cd-mins').textContent = mins;
+    const diff = wedding - new Date();
+    if (diff <= 0) return;
+    document.getElementById('cd-days').textContent = Math.floor(diff / 86400000);
+    document.getElementById('cd-hours').textContent = Math.floor((diff % 86400000) / 3600000);
+    document.getElementById('cd-mins').textContent = Math.floor((diff % 3600000) / 60000);
   }
   updateCountdown();
   setInterval(updateCountdown, 60000);
