@@ -67,7 +67,7 @@
     <!-- 1. CHURCH -->
     <div class="detail-card">
       <div class="detail-card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;stroke:#7A6248;">
           <path d="M12 2v4M10 4h4"/>
           <path d="M4 22V10l8-6 8 6v12H4z"/>
           <rect x="9" y="14" width="6" height="8"/>
@@ -88,7 +88,7 @@
     <!-- 2. VENUE -->
     <div class="detail-card">
       <div class="detail-card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;stroke:#7A6248;">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
           <path d="M9 22V12h6v10"/>
           <path d="M7 9h2M15 9h2M7 13h2M15 13h2"/>
@@ -248,30 +248,25 @@
             <thead>
               <tr>
                 <th></th>
-                <th class="it">Senza colazione</th>
-                <th class="en">Room only</th>
-                <th class="it">Con colazione</th>
-                <th class="en">With breakfast</th>
+                <th><span class="it">Senza colazione</span><span class="en">Room only</span></th>
+                <th><span class="it">Con colazione</span><span class="en">With breakfast</span></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="room-type it">Singola</td>
-                <td class="room-type en">Single</td>
-                <td>[[ prezzo ]]</td>
-                <td>[[ prezzo ]]</td>
+                <td class="room-type"><span class="it">Singola</span><span class="en">Single</span></td>
+                <td>€ 100,00</td>
+                <td>€ 100,00</td>
               </tr>
               <tr>
-                <td class="room-type it">Doppia</td>
-                <td class="room-type en">Double</td>
-                <td>[[ prezzo ]]</td>
-                <td>[[ prezzo ]]</td>
+                <td class="room-type"><span class="it">Doppia</span><span class="en">Double</span></td>
+                <td>€ 100,00</td>
+                <td>€ 100,00</td>
               </tr>
               <tr>
-                <td class="room-type it">Famiglia</td>
-                <td class="room-type en">Family</td>
-                <td>[[ prezzo ]]</td>
-                <td>[[ prezzo ]]</td>
+                <td class="room-type"><span class="it">Famiglia</span><span class="en">Family</span></td>
+                <td>€ 100,00</td>
+                <td>€ 100,00</td>
               </tr>
             </tbody>
           </table>
@@ -391,10 +386,9 @@
   <div class="details-grid" style="grid-template-columns: repeat(2, 1fr);">
 
     <div class="detail-card">
-      <span class="detail-card-label">Ivan</span>
+      <span class="detail-card-label it">Sposo</span>
+      <span class="detail-card-label en">Groom</span>
       <div class="detail-card-value">Ivan Salodini</div>
-      <span class="detail-card-sub it">Sposo</span>
-      <span class="detail-card-sub en">Groom</span>
       <button class="iban-reveal-btn" onclick="revealContact('ivan')" id="ivanBtn" style="margin-top:1rem;">
         <span class="it">Mostra numero</span><span class="en">Show number</span>
       </button>
@@ -409,10 +403,9 @@
     </div>
 
     <div class="detail-card">
-      <span class="detail-card-label">Alessia</span>
+      <span class="detail-card-label it">Sposa</span>
+      <span class="detail-card-label en">Bride</span>
       <div class="detail-card-value">Alessia Avitabile</div>
-      <span class="detail-card-sub it">Sposa</span>
-      <span class="detail-card-sub en">Bride</span>
       <button class="iban-reveal-btn" onclick="revealContact('alessia')" id="alessiaBtn" style="margin-top:1rem;">
         <span class="it">Mostra numero</span><span class="en">Show number</span>
       </button>

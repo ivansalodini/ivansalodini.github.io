@@ -294,10 +294,10 @@ body.lang-en span.en { display: inline; }
 
 /* DETAIL CARD ICON */
 .detail-card-icon {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 .detail-card-icon svg {
-  width: 28px; height: 28px;
+  width: 20px; height: 20px;
   stroke: var(--sepia); fill: none;
   stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round;
 }
@@ -319,6 +319,6 @@ body.lang-en span.en { display: inline; }
 }
 .price-table td.room-type {
   font-family: var(--serif); font-size: 14px;
-  color: var(--dark); text-align: left; font-weight: 400;
+  color: var(--dark); text-align: left; font-weight: 400; font-style: italic;
 }
 .price-table tbody tr:last-child td { border-bottom: none; }
