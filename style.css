@@ -326,9 +326,9 @@ body.lang-en span.en { display: inline; }
 /* WHATSAPP LINK */
 .whatsapp-link {
   font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: #5A7A62; text-decoration: none;
-  border-bottom: 1px solid rgba(90,122,98,0.3);
-  transition: border-color 0.2s; margin-left: 12px;
+  color: #25D366; text-decoration: none;
+  border-bottom: 1px solid rgba(37,211,102,0.3);
+  transition: border-color 0.2s; margin-left: 0; display: inline-block;
 }
-.whatsapp-link:hover { border-color: #5A7A62; }
-.whatsapp-link svg { fill: #5A7A62; }
+.whatsapp-link:hover { border-color: #25D366; }
+.whatsapp-link svg { fill: #25D366; }
