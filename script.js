@@ -2,7 +2,7 @@
 const dropdownText = {
   'select-attending': {
     it: ['', 'Sì, ci saremo!', 'Purtroppo non possiamo'],
-    en: ['', 'Yes, we\'ll be there!', 'Sorry, we can\'t make it']
+    en: ['', "Yes, we'll be there!", "Sorry, we can't make it"]
   },
   'select-guests': {
     it: ['Solo io', '2', '3', '4'],
@@ -42,11 +42,26 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
-// RSVP form submission
-function handleRSVP(e) {
+// RSVP form submission via Formspree
+async function handleRSVP(e) {
   e.preventDefault();
-  document.getElementById('rsvpForm').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
+  const form = document.getElementById('rsvpForm');
+  const data = new FormData(form);
+  try {
+    const response = await fetch('https://formspree.io/f/xkoewwag', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch (err) {
+    alert('Something went wrong. Please check your connection and try again.');
+  }
 }
 
 // IBAN reveal / hide toggle
