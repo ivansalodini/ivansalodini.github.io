@@ -96,3 +96,13 @@ function revealContact(person) {
   btn.querySelector('.it').textContent = isVisible ? 'Nascondi numero' : 'Mostra numero';
   btn.querySelector('.en').textContent = isVisible ? 'Hide number' : 'Show number';
 }
+
+// Hotel prices reveal / hide toggle
+function revealPrices() {
+  const display = document.getElementById('pricesDisplay');
+  const btn = document.getElementById('pricesBtn');
+  display.classList.toggle('visible');
+  const isVisible = display.classList.contains('visible');
+  btn.querySelector('.it').textContent = isVisible ? 'Nascondi tariffe →' : 'Mostra tariffe →';
+  btn.querySelector('.en').textContent = isVisible ? 'Hide rates →' : 'Show rates →';
+}
