@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save the Date — Ivan & Alessia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --sepia: #8B7355;
+    --sepia-light: #B1A1A1;
+    --dark: #2C2318;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --script: 'Pinyon Script', cursive;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ENVELOPE WRAPPER */
+  .scene {
+    width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  /* CARD */
+  .card {
+    width: min(380px, 88vw);
+    aspect-ratio: 2 / 3;
+    background: var(--cream);
+    border: 1px solid rgba(139,115,85,0.25);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: space-between;
+    padding: 10% 8%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle corner ornaments */
+  .card::before, .card::after {
+    content: '';
+    position: absolute;
+    width: 28px; height: 28px;
+    border-color: rgba(139,115,85,0.3);
+    border-style: solid;
+  }
+  .card::before { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+  .card::after  { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+  /* TOP TYPOGRAPHY */
+  .card-top {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: rise 1.2s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+  }
+  .word-save {
+    font-family: var(--serif);
+    font-size: clamp(52px, 14vw, 80px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--sepia);
+    line-height: 1;
+    display: block;
+  }
+  .word-the {
+    font-family: var(--script);
+    font-size: clamp(44px, 12vw, 68px);
+    color: var(--sepia);
+    line-height: 1;
+    display: block;
+    opacity: 0;
+    animation: fadeScript 1.4s ease 1s forwards;
+  }
+  .word-date {
+    font-family: var(--serif);
+    font-size: clamp(52px, 14vw, 80px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--sepia);
+    line-height: 1;
+    display: block;
+  }
+
+  /* BOTTOM DETAILS */
+  .card-bottom {
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+    animation: rise 1.2s cubic-bezier(0.22,1,0.36,1) 1.6s forwards;
+  }
+  .detail-date {
+    font-family: var(--sans);
+    font-size: clamp(9px, 2.2vw, 12px);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    color: var(--sepia);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .detail-names {
+    font-family: var(--sans);
+    font-size: clamp(9px, 2.2vw, 11px);
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: var(--sepia);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .detail-place {
+    font-family: var(--serif);
+    font-size: clamp(13px, 3.5vw, 17px);
+    font-style: italic;
+    color: var(--sepia-light);
+    margin-bottom: 14px;
+  }
+  .detail-line {
+    width: 36px; height: 1px;
+    background: var(--sepia-light);
+    margin: 0 auto 14px;
+    transform: scaleX(0);
+    animation: expandLine 0.8s ease 2.4s forwards;
+  }
+  .detail-invite {
+    font-family: var(--serif);
+    font-size: clamp(11px, 3vw, 14px);
+    font-style: italic;
+    color: var(--sepia-light);
+  }
+  .detail-url {
+    font-family: var(--sans);
+    font-size: clamp(8px, 2vw, 10px);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: rgba(139,115,85,0.5);
+    margin-top: 10px;
+    text-decoration: none;
+  }
+
+  /* PARTICLES — floating petals */
+  .particles {
+    position: fixed; inset: 0;
+    pointer-events: none; overflow: hidden; z-index: 0;
+  }
+  .petal {
+    position: absolute;
+    width: 5px; height: 8px;
+    background: rgba(139,115,85,0.12);
+    border-radius: 50% 0 50% 0;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+  }
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeScript {
+    0%   { opacity: 0; transform: translateX(-10px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes expandLine {
+    to { transform: scaleX(1); }
+  }
+
+  /* LINK TO MAIN SITE */
+  .site-link {
+    position: fixed; bottom: 28px; left: 0; right: 0;
+    text-align: center;
+    opacity: 0;
+    animation: rise 1s ease 3s forwards;
+  }
+  .site-link a {
+    font-family: var(--sans); font-size: 10px; font-weight: 300;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--sepia-light); text-decoration: none;
+    border-bottom: 1px solid rgba(177,161,161,0.3);
+    padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
+  }
+  .site-link a:hover { color: var(--sepia); border-color: var(--sepia); }
+</style>
+</head>
+<body>
+
+<!-- Floating petals -->
+<div class="particles" id="particles"></div>
+
+<div class="scene">
+  <div class="card">
+    <div class="card-top">
+      <span class="word-save">SAVE</span>
+      <span class="word-the">the</span>
+      <span class="word-date">DATE</span>
+    </div>
+    <div class="card-bottom">
+      <div class="detail-date">12 Giugno 2027</div>
+      <div class="detail-names">Ivan &amp; Alessia</div>
+      <div class="detail-place">Varese</div>
+      <div class="detail-line"></div>
+      <div class="detail-invite">Invito a seguire</div>
+      <a href="https://ivanalessia.com" class="detail-url">ivanalessia.com</a>
+    </div>
+  </div>
+</div>
+
+<div class="site-link">
+  <a href="https://ivanalessia.com">Scopri tutti i dettagli → ivanalessia.com</a>
+</div>
+
+<script>
+  const container = document.getElementById('particles');
+  const count = 18;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.width = (4 + Math.random() * 5) + 'px';
+    p.style.height = (6 + Math.random() * 8) + 'px';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.opacity = 0.08 + Math.random() * 0.1;
+    p.style.borderRadius = Math.random() > 0.5 ? '50% 0 50% 0' : '0 50% 0 50%';
+    container.appendChild(p);
+  }
+</script>
+</body>
+</html>
