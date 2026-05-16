@@ -113,30 +113,3 @@ function revealHotelContacts() {
   btn.querySelector('.en').textContent = isVisible ? 'Hide contacts →' : 'Show contacts →';
 }
 
-// Slideshow
-(function() {
-  const slides = document.querySelectorAll('.slide');
-  const dotsWrap = document.getElementById('slideshowDots');
-  if (!slides.length || !dotsWrap) return;
-
-  let current = 0;
-
-  // Create dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.onclick = () => goTo(i);
-    dotsWrap.appendChild(dot);
-  });
-
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    dotsWrap.children[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dotsWrap.children[current].classList.add('active');
-  }
-
-  // Auto-play every 4 seconds
-  setInterval(() => goTo(current + 1), 4000);
-})();
