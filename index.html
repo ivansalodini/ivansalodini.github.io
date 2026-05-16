@@ -64,8 +64,8 @@
   <div class="details-grid">
     <!-- 1. PARKING -->
     <div class="detail-card">
-      <span class="detail-card-label it">Parcheggio</span>
-      <span class="detail-card-label en">Parking</span>
+      <span class="detail-card-label it">Parcheggio · 15:00</span>
+      <span class="detail-card-label en">Parking · 15:00</span>
       <div class="detail-card-value">Villa Esengrini Montalbano</div>
       <span class="detail-card-sub">
         <span class="it">Il parcheggio della Villa è disponibile fin dall'arrivo. Parcheggiate qui anche per la cerimonia: la chiesa è a pochi passi a piedi.</span>
@@ -263,8 +263,8 @@
         <span class="en" id="copyLabel-en">Copy →</span>
       </button>
       <div style="margin-top:12px; font-size:12px; color:var(--mid);">
-        <span class="it">Intestato a: <strong>Ivan [[ COGNOME ]] &amp; Alessia [[ COGNOME ]]</strong></span>
-        <span class="en">Account holder: <strong>Ivan [[ SURNAME ]] &amp; Alessia [[ SURNAME ]]</strong></span>
+        <span class="it">Intestato a: <strong>Ivan Salodini &amp; Alessia Avitabile</strong></span>
+        <span class="en">Account holder: <strong>Ivan Salodini &amp; Alessia Avitabile</strong></span>
       </div>
     </div>
   </div>
@@ -298,16 +298,16 @@
     <div class="form-row">
       <div class="form-group">
         <label><span class="it">Parteciperete?</span><span class="en">Are you attending?</span></label>
-        <select name="attending" required>
+        <select name="attending" id="select-attending" required>
           <option value=""></option>
-          <option value="yes"><span class="it">Sì, ci saremo!</span><span class="en">Yes, we'll be there!</span></option>
-          <option value="no"><span class="it">Purtroppo non possiamo</span><span class="en">Sorry, we can't make it</span></option>
+          <option value="yes">Sì, ci saremo!</option>
+          <option value="no">Purtroppo non possiamo</option>
         </select>
       </div>
       <div class="form-group">
         <label><span class="it">Numero di ospiti</span><span class="en">Number of guests</span></label>
-        <select name="guests">
-          <option value="1"><span class="it">Solo io</span><span class="en">Just me</span></option>
+        <select name="guests" id="select-guests">
+          <option value="1">Solo io</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>

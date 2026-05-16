@@ -1,9 +1,31 @@
+// Dropdown translations
+const dropdownText = {
+  'select-attending': {
+    it: ['', 'Sì, ci saremo!', 'Purtroppo non possiamo'],
+    en: ['', 'Yes, we\'ll be there!', 'Sorry, we can\'t make it']
+  },
+  'select-guests': {
+    it: ['Solo io', '2', '3', '4'],
+    en: ['Just me', '2', '3', '4']
+  }
+};
+
 // Language switcher
 function setLang(lang) {
   document.body.className = lang === 'en' ? 'lang-en' : '';
   document.getElementById('btn-it').classList.toggle('active', lang === 'it');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
+
+  // Update dropdown option text
+  Object.keys(dropdownText).forEach(function(id) {
+    const select = document.getElementById(id);
+    if (!select) return;
+    const texts = dropdownText[id][lang];
+    Array.from(select.options).forEach(function(opt, i) {
+      if (texts[i] !== undefined) opt.text = texts[i];
+    });
+  });
 }
 
 // Countdown timer
