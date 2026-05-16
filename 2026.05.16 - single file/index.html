@@ -5,7 +5,297 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ivan & Alessia — 12 Giugno 2027</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFF8F3;
+    --warm: #F5EDE6;
+    --gold: #B8975A;
+    --gold-light: #D4B483;
+    --dark: #000000;
+    --mid: #B1A1A1;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--dark); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+
+  /* all text defaults */
+  p, span, li, td, th, label, input, select, textarea, button { color: var(--mid); }
+  h1, h2, h3, h4, .detail-card-value, .sch-time, .countdown-num { color: var(--dark); }
+  strong { color: var(--dark); font-weight: 500; }
+
+  .lang-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; justify-content: flex-end; align-items: center;
+    padding: 0.5rem 1.5rem; gap: 0.5rem;
+    background: rgba(255,248,243,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,151,90,0.15);
+  }
+  .lang-btn {
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--mid); background: none; border: none; cursor: pointer;
+    padding: 3px 6px; transition: color 0.2s;
+  }
+  .lang-btn.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  .lang-sep { color: var(--mid); font-size: 10px; }
+
+  nav {
+    position: fixed; top: 30px; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    padding: 0.9rem 2rem;
+    background: rgba(255,248,243,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,151,90,0.13);
+  }
+  nav a {
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; transition: color 0.2s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 9rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(184,151,90,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(184,151,90,0.05) 0%, transparent 70%);
+  }
+  .hero-ornament {
+    font-family: var(--serif); font-size: 13px; font-weight: 300;
+    letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(3.5rem, 11vw, 8rem);
+    font-weight: 300; line-height: 1; color: var(--dark); white-space: nowrap;
+    opacity: 0; animation: fadeUp 1s 0.4s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-date {
+    margin-top: 2rem; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid);
+    opacity: 0; animation: fadeUp 1s 0.6s forwards;
+  }
+  .hero-divider {
+    width: 1px; height: 60px; background: var(--gold-light);
+    margin: 2.5rem auto 0; opacity: 0; animation: fadeUp 1s 0.8s forwards;
+  }
+  .countdown {
+    display: flex; gap: 2.5rem; margin-top: 2.5rem;
+    opacity: 0; animation: fadeUp 1s 1s forwards;
+  }
+  .countdown-item { text-align: center; }
+  .countdown-num {
+    font-family: var(--serif); font-size: 2.8rem; font-weight: 300;
+    color: var(--dark); line-height: 1; display: block;
+  }
+  .countdown-label {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mid); margin-top: 4px; display: block;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section { padding: 6rem 2rem; max-width: 780px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(184,151,90,0.35), transparent);
+  }
+
+  h2 {
+    font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 300; line-height: 1.1; color: var(--dark); margin-bottom: 2.5rem;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+
+  p { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 1rem; }
+
+  .divider {
+    height: 1px; max-width: 780px; margin: 0 auto;
+    background: linear-gradient(to right, transparent, rgba(184,151,90,0.25), transparent);
+  }
+
+  /* CEREMONY CARDS */
+  .details-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 2rem;
+  }
+  .detail-card {
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.18);
+    border-radius: 4px; padding: 1.5rem;
+  }
+  .detail-card-label {
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem; display: block;
+  }
+  .detail-card-value {
+    font-family: var(--serif); font-size: 1.2rem; color: var(--dark); line-height: 1.3;
+  }
+  .detail-card-sub {
+    font-size: 12px; color: var(--mid); margin-top: 6px; display: block; line-height: 1.6;
+  }
+  .map-link {
+    display: inline-block; margin-top: 10px; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+    text-decoration: none; border-bottom: 1px solid rgba(184,151,90,0.3);
+    transition: border-color 0.2s;
+  }
+  .map-link:hover { border-color: var(--gold); }
+
+  /* SCHEDULE */
+  .schedule-list { margin-top: 2rem; }
+  .schedule-item {
+    display: flex; gap: 1.5rem; padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(177,161,161,0.15); align-items: flex-start;
+  }
+  .schedule-item:last-child { border-bottom: none; }
+  .sch-time {
+    font-family: var(--serif); font-size: 1.1rem; color: var(--dark);
+    min-width: 60px; padding-top: 2px;
+  }
+  .sch-content h3 {
+    font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
+    color: var(--dark); margin-bottom: 4px;
+  }
+  .sch-content p { font-size: 13px; color: var(--mid); margin: 0; line-height: 1.6; }
+
+  /* TRAVEL */
+  .travel-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .travel-item {
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    padding: 1.25rem; background: var(--warm);
+    border-radius: 4px; border: 1px solid rgba(184,151,90,0.15);
+  }
+  .travel-icon {
+    flex-shrink: 0; width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .travel-icon svg {
+    width: 22px; height: 22px; stroke: var(--gold); fill: none;
+    stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .travel-item h3 {
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+    color: var(--dark); margin-bottom: 4px;
+  }
+  .travel-item p { font-size: 13px; color: var(--mid); margin: 0; line-height: 1.6; }
+
+  /* REGISTRY */
+  .registry-box {
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.2);
+    border-radius: 4px; padding: 2.5rem; text-align: center; margin-top: 2rem;
+  }
+  .registry-box p { max-width: 500px; margin: 0 auto 1.5rem; color: var(--mid); }
+  .iban-reveal-btn {
+    display: inline-block; padding: 0.75rem 2rem;
+    border: 1px solid var(--gold); color: var(--gold);
+    font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; background: none;
+    border-radius: 2px; cursor: pointer; transition: all 0.2s;
+  }
+  .iban-reveal-btn:hover { background: var(--gold); color: var(--bg); }
+  .iban-display {
+    display: none; margin-top: 1.5rem;
+    padding: 1.25rem; background: var(--bg);
+    border: 1px solid rgba(184,151,90,0.2); border-radius: 4px;
+  }
+  .iban-display.visible { display: block; }
+  .iban-label {
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 8px;
+  }
+  .iban-number {
+    font-family: var(--sans); font-size: 16px; font-weight: 400;
+    color: var(--dark); letter-spacing: 0.1em; word-break: break-all;
+  }
+  .iban-copy {
+    display: inline-block; margin-top: 10px; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+    background: none; border: none; cursor: pointer;
+    border-bottom: 1px solid rgba(184,151,90,0.3); transition: border-color 0.2s;
+    font-family: var(--sans);
+  }
+  .iban-copy:hover { border-color: var(--gold); }
+
+  /* RSVP */
+  .rsvp-form { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.25);
+    border-radius: 2px; padding: 0.75rem 1rem;
+    font-family: var(--sans); font-size: 14px; font-weight: 300;
+    color: var(--dark); outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .form-group input::placeholder { color: var(--mid); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .submit-btn {
+    align-self: flex-start; padding: 0.85rem 2.5rem;
+    background: var(--gold); color: var(--bg); border: none; border-radius: 2px;
+    cursor: pointer; font-family: var(--sans); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover { background: var(--dark); }
+  .form-success {
+    display: none; padding: 2rem; background: var(--warm);
+    border: 1px solid rgba(184,151,90,0.25); border-radius: 4px;
+    text-align: center; font-family: var(--serif); font-size: 1.4rem;
+    color: var(--dark); font-style: italic;
+  }
+
+  footer {
+    text-align: center; padding: 3rem 2rem;
+    border-top: 1px solid rgba(184,151,90,0.15);
+    font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: var(--mid);
+  }
+
+  @media (max-width: 650px) {
+    .details-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    nav { gap: 1rem; }
+    .hero h1 { white-space: normal; }
+  }
+
+  /* language toggle */
+  .it { display: block; }
+  .en { display: none; }
+  body.lang-en .it { display: none; }
+  body.lang-en .en { display: block; }
+  span.it { display: inline; }
+  span.en { display: none; }
+  body.lang-en span.it { display: none; }
+  body.lang-en span.en { display: inline; }
+</style>
 </head>
 <body>
 
@@ -263,8 +553,8 @@
         <span class="en" id="copyLabel-en">Copy →</span>
       </button>
       <div style="margin-top:12px; font-size:12px; color:var(--mid);">
-        <span class="it">Intestato a: <strong>Ivan [[ COGNOME ]] &amp; Alessia [[ COGNOME ]]</strong></span>
-        <span class="en">Account holder: <strong>Ivan [[ SURNAME ]] &amp; Alessia [[ SURNAME ]]</strong></span>
+        <span class="it">Intestato a: <strong style="color:var(--dark)">Ivan [[ COGNOME ]] &amp; Alessia [[ COGNOME ]]</strong></span>
+        <span class="en">Account holder: <strong style="color:var(--dark)">Ivan [[ SURNAME ]] &amp; Alessia [[ SURNAME ]]</strong></span>
       </div>
     </div>
   </div>
@@ -336,6 +626,52 @@
   Ivan &amp; Alessia &nbsp;·&nbsp; 12 <span class="it">Giugno</span><span class="en">June</span> 2027
 </footer>
 
-<script src="script.js"></script>
+<script>
+  function setLang(lang) {
+    document.body.className = lang === 'en' ? 'lang-en' : '';
+    document.getElementById('btn-it').classList.toggle('active', lang === 'it');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+
+  const wedding = new Date('2027-06-12T16:00:00');
+  function updateCountdown() {
+    const diff = wedding - new Date();
+    if (diff <= 0) return;
+    document.getElementById('cd-days').textContent = Math.floor(diff / 86400000);
+    document.getElementById('cd-hours').textContent = Math.floor((diff % 86400000) / 3600000);
+    document.getElementById('cd-mins').textContent = Math.floor((diff % 3600000) / 60000);
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
+  function handleRSVP(e) {
+    e.preventDefault();
+    document.getElementById('rsvpForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  function revealIban() {
+    const d = document.getElementById('ibanDisplay');
+    const btn = document.getElementById('ibanBtn');
+    d.classList.toggle('visible');
+    const isVisible = d.classList.contains('visible');
+    btn.querySelector('.it').textContent = isVisible ? 'Nascondi IBAN' : 'Mostra IBAN';
+    btn.querySelector('.en').textContent = isVisible ? 'Hide IBAN' : 'Reveal IBAN';
+  }
+
+  function copyIban() {
+    const iban = document.getElementById('ibanNumber').textContent.trim();
+    navigator.clipboard.writeText(iban).then(() => {
+      const isIt = !document.body.classList.contains('lang-en');
+      document.getElementById('copyLabel-it').textContent = 'Copiato ✓';
+      document.getElementById('copyLabel-en').textContent = 'Copied ✓';
+      setTimeout(() => {
+        document.getElementById('copyLabel-it').textContent = 'Copia →';
+        document.getElementById('copyLabel-en').textContent = 'Copy →';
+      }, 2000);
+    });
+  }
+</script>
 </body>
 </html>
