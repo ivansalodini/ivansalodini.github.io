@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivan & Alessia — 12 June 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --warm: #F0E8DC;
+    --gold: #B8975A;
+    --gold-light: #D4B483;
+    --dark: #2C2318;
+    --mid: #6B5744;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: center; gap: 2.5rem;
+    padding: 1.25rem 2rem;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,151,90,0.2);
+  }
+  nav a {
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(184,151,90,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(184,151,90,0.06) 0%, transparent 70%);
+  }
+  .hero-ornament {
+    font-family: var(--serif); font-size: 13px; font-weight: 300;
+    letter-spacing: 0.3em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 1s 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 300; line-height: 0.9;
+    color: var(--dark); letter-spacing: -0.01em;
+    opacity: 0; animation: fadeUp 1s 0.4s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-date {
+    margin-top: 2rem;
+    font-family: var(--sans); font-size: 12px; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid);
+    opacity: 0; animation: fadeUp 1s 0.6s forwards;
+  }
+  .hero-divider {
+    width: 1px; height: 60px; background: var(--gold-light);
+    margin: 2.5rem auto 0;
+    opacity: 0; animation: fadeUp 1s 0.8s forwards;
+  }
+  .countdown {
+    display: flex; gap: 2.5rem; margin-top: 2.5rem;
+    opacity: 0; animation: fadeUp 1s 1s forwards;
+  }
+  .countdown-item { text-align: center; }
+  .countdown-num {
+    font-family: var(--serif); font-size: 2.8rem; font-weight: 300;
+    color: var(--dark); line-height: 1; display: block;
+  }
+  .countdown-label {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mid); margin-top: 4px; display: block;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2rem;
+    max-width: 780px; margin: 0 auto;
+  }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(184,151,90,0.4), transparent);
+  }
+  h2 {
+    font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 300; line-height: 1.1; color: var(--dark);
+    margin-bottom: 2.5rem;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+  p { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 1rem; }
+
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(184,151,90,0.3), transparent);
+    margin: 2rem 0;
+  }
+
+  /* CEREMONY DETAILS */
+  .details-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; margin-top: 2rem;
+  }
+  .detail-card {
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.2);
+    border-radius: 4px; padding: 1.5rem;
+  }
+  .detail-card-label {
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem; display: block;
+  }
+  .detail-card-value {
+    font-family: var(--serif); font-size: 1.3rem; color: var(--dark);
+    line-height: 1.3;
+  }
+  .detail-card-sub {
+    font-size: 12px; color: var(--mid); margin-top: 4px; display: block;
+  }
+
+  /* SCHEDULE */
+  .schedule-list { margin-top: 2rem; }
+  .schedule-item {
+    display: flex; gap: 1.5rem; padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(184,151,90,0.15);
+    align-items: flex-start;
+  }
+  .schedule-item:last-child { border-bottom: none; }
+  .sch-time {
+    font-family: var(--serif); font-size: 1.1rem; color: var(--gold);
+    min-width: 60px; padding-top: 2px;
+  }
+  .sch-content h3 {
+    font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
+    color: var(--dark); margin-bottom: 4px;
+  }
+  .sch-content p { font-size: 13px; color: var(--mid); margin: 0; line-height: 1.6; }
+
+  /* DRESS CODE */
+  .dress-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;
+  }
+  .dress-card {
+    border: 1px solid rgba(184,151,90,0.25); border-radius: 4px; padding: 1.5rem;
+    text-align: center;
+  }
+  .dress-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .dress-title {
+    font-family: var(--serif); font-size: 1.1rem; color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+  .dress-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+  /* TRAVEL */
+  .travel-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .travel-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.25rem; background: var(--warm);
+    border-radius: 4px; border: 1px solid rgba(184,151,90,0.15);
+  }
+  .travel-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .travel-item h3 {
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+    color: var(--dark); margin-bottom: 4px;
+  }
+  .travel-item p { font-size: 13px; color: var(--mid); margin: 0; line-height: 1.6; }
+
+  /* GIFT REGISTRY */
+  .registry-box {
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.25);
+    border-radius: 4px; padding: 2.5rem; text-align: center; margin-top: 2rem;
+  }
+  .registry-box p { max-width: 500px; margin: 0 auto 1.5rem; }
+  .registry-link {
+    display: inline-block; padding: 0.75rem 2rem;
+    border: 1px solid var(--gold); color: var(--gold);
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .registry-link:hover { background: var(--gold); color: var(--cream); }
+
+  /* RSVP FORM */
+  .rsvp-form { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--warm); border: 1px solid rgba(184,151,90,0.3);
+    border-radius: 2px; padding: 0.75rem 1rem;
+    font-family: var(--sans); font-size: 14px; font-weight: 300;
+    color: var(--dark); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .submit-btn {
+    align-self: flex-start;
+    padding: 0.85rem 2.5rem;
+    background: var(--gold); color: var(--cream);
+    border: none; border-radius: 2px; cursor: pointer;
+    font-family: var(--sans); font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 500; transition: background 0.2s;
+  }
+  .submit-btn:hover { background: var(--dark); }
+  .form-success {
+    display: none; padding: 1.5rem; background: var(--warm);
+    border: 1px solid rgba(184,151,90,0.3); border-radius: 4px;
+    text-align: center; font-family: var(--serif); font-size: 1.3rem;
+    color: var(--dark);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 3rem 2rem;
+    border-top: 1px solid rgba(184,151,90,0.2);
+    font-family: var(--serif); font-size: 1.1rem;
+    font-style: italic; color: var(--mid);
+  }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .dress-grid { grid-template-columns: 1fr; }
+    nav { gap: 1.2rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#ceremony">Ceremony</a>
+  <a href="#schedule">Schedule</a>
+  <a href="#dresscode">Dress code</a>
+  <a href="#travel">Travel</a>
+  <a href="#registry">Registry</a>
+  <a href="#rsvp">RSVP</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ornament">We are getting married</div>
+  <h1>Ivan<br>&amp; <em>Alessia</em></h1>
+  <div class="hero-date">Saturday · 12 June 2027 · [[ CITY ]]</div>
+  <div class="hero-divider"></div>
+  <div class="countdown">
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-days">—</span>
+      <span class="countdown-label">Days</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-hours">—</span>
+      <span class="countdown-label">Hours</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-mins">—</span>
+      <span class="countdown-label">Minutes</span>
+    </div>
+  </div>
+</div>
+
+<!-- CEREMONY -->
+<section id="ceremony">
+  <div class="section-label">The ceremony</div>
+  <h2>Where &amp; <em>when</em></h2>
+  <p>We can't wait to celebrate this special day with you. Here are all the details you need to join us.</p>
+  <div class="details-grid">
+    <div class="detail-card">
+      <span class="detail-card-label">Venue</span>
+      <div class="detail-card-value">[[ VENUE NAME ]]</div>
+      <span class="detail-card-sub">[[ FULL ADDRESS ]]</span>
+    </div>
+    <div class="detail-card">
+      <span class="detail-card-label">Date</span>
+      <div class="detail-card-value">Saturday<br>12 June 2027</div>
+    </div>
+    <div class="detail-card">
+      <span class="detail-card-label">Ceremony begins</span>
+      <div class="detail-card-value">[[ TIME, e.g. 3:00 PM ]]</div>
+      <span class="detail-card-sub">Doors open at [[ TIME ]]</span>
+    </div>
+    <div class="detail-card">
+      <span class="detail-card-label">Reception ends</span>
+      <div class="detail-card-value">[[ END TIME ]]</div>
+      <span class="detail-card-sub">Dinner &amp; dancing</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="section-label">The day</div>
+  <h2>Day <em>schedule</em></h2>
+  <div class="schedule-list">
+    <div class="schedule-item">
+      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-content">
+        <h3>Guests arrive</h3>
+        <p>Doors open, welcome drinks served</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-content">
+        <h3>Ceremony</h3>
+        <p>[[ Brief description, e.g. Civil ceremony in the garden ]]</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-content">
+        <h3>Cocktail hour</h3>
+        <p>Drinks, canapés &amp; photos with the couple</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-content">
+        <h3>Dinner</h3>
+        <p>[[ Brief description ]]</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">[[ TIME ]]</div>
+      <div class="sch-content">
+        <h3>Dancing &amp; celebrations</h3>
+        <p>Let the party begin!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+
+<!-- DRESS CODE -->
+<section id="dresscode">
+  <div class="section-label">Dress code</div>
+  <h2>What to <em>wear</em></h2>
+  <p>We'd love for our guests to dress elegantly. Here are some guidelines to help you choose your outfit.</p>
+  <div class="dress-grid">
+    <div class="dress-card">
+      <div class="dress-icon">👗</div>
+      <div class="dress-title">For her</div>
+      <div class="dress-desc">[[ e.g. Cocktail dress or elegant midi. Florals and pastels welcome. ]]</div>
+    </div>
+    <div class="dress-card">
+      <div class="dress-icon">🤵</div>
+      <div class="dress-title">For him</div>
+      <div class="dress-desc">[[ e.g. Suit and tie. Light colours encouraged for a summer feel. ]]</div>
+    </div>
+  </div>
+  <p style="margin-top:1.5rem; font-size:13px;">
+    Please avoid wearing white, ivory, or cream — those are reserved for the bride. Thank you!
+  </p>
+</section>
+
+<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+
+<!-- TRAVEL -->
+<section id="travel">
+  <div class="section-label">Getting there</div>
+  <h2>Travel &amp; <em>accommodation</em></h2>
+  <p>We want getting there to be as easy as possible. Here's everything you need to know.</p>
+  <div class="travel-list">
+    <div class="travel-item">
+      <div class="travel-icon">✈️</div>
+      <div>
+        <h3>By plane</h3>
+        <p>[[ e.g. The nearest airport is XX, about 30 min from the venue by taxi. ]]</p>
+      </div>
+    </div>
+    <div class="travel-item">
+      <div class="travel-icon">🚂</div>
+      <div>
+        <h3>By train</h3>
+        <p>[[ e.g. Take the train to XX station, then a 10-minute taxi to the venue. ]]</p>
+      </div>
+    </div>
+    <div class="travel-item">
+      <div class="travel-icon">🚗</div>
+      <div>
+        <h3>By car</h3>
+        <p>[[ e.g. Free parking available on site. Enter via the main gate on Via XX. ]]</p>
+      </div>
+    </div>
+    <div class="travel-item">
+      <div class="travel-icon">🏨</div>
+      <div>
+        <h3>Where to stay</h3>
+        <p>[[ e.g. We recommend Hotel XX (5 min away) or Hotel YY in the town centre. A room block has been reserved — mention "Ivan & Alessia wedding" when booking. ]]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+
+<!-- REGISTRY -->
+<section id="registry">
+  <div class="section-label">Gift registry</div>
+  <h2>A little <em>wish list</em></h2>
+  <div class="registry-box">
+    <p>Your presence is the greatest gift of all. If you'd like to give something, we have put together a small wish list — or a contribution to our honeymoon fund is always welcome.</p>
+    <a href="[[ REGISTRY URL ]]" class="registry-link" target="_blank">View our registry</a>
+  </div>
+</section>
+
+<div class="divider" style="max-width:780px;margin:0 auto;"></div>
+
+<!-- RSVP -->
+<section id="rsvp">
+  <div class="section-label">RSVP</div>
+  <h2>Will you <em>join us?</em></h2>
+  <p>Please let us know by <strong>[[ RSVP DEADLINE, e.g. 1 May 2027 ]]</strong> so we can plan accordingly. We can't wait to celebrate with you!</p>
+
+  <form class="rsvp-form" id="rsvpForm" onsubmit="handleRSVP(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fname">First name</label>
+        <input type="text" id="fname" name="fname" required placeholder="Ivan">
+      </div>
+      <div class="form-group">
+        <label for="lname">Last name</label>
+        <input type="text" id="lname" name="lname" required placeholder="Rossi">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" required placeholder="ivan@example.com">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="attending">Are you attending?</label>
+        <select id="attending" name="attending" required>
+          <option value="">Please select</option>
+          <option value="yes">Yes, I'll be there!</option>
+          <option value="no">Sorry, I can't make it</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="guests">Number of guests</label>
+        <select id="guests" name="guests">
+          <option value="1">Just me</option>
+          <option value="2">2 people</option>
+          <option value="3">3 people</option>
+          <option value="4">4 people</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="dietary">Dietary requirements</label>
+      <input type="text" id="dietary" name="dietary" placeholder="Vegetarian, allergies, etc. Leave blank if none">
+    </div>
+    <div class="form-group">
+      <label for="message">A message for the couple</label>
+      <textarea id="message" name="message" placeholder="Optional — we'd love to hear from you!"></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Send my RSVP</button>
+  </form>
+  <div class="form-success" id="formSuccess">
+    Thank you! We've received your RSVP and we can't wait to celebrate with you. 🤍
+  </div>
+</section>
+
+<footer>
+  Ivan &amp; Alessia · 12 June 2027
+</footer>
+
+<script>
+  const wedding = new Date('2027-06-12T15:00:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = wedding - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent = '0';
+      return;
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = hours;
+    document.getElementById('cd-mins').textContent = mins;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
+  function handleRSVP(e) {
+    e.preventDefault();
+    document.getElementById('rsvpForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
