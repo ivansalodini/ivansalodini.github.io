@@ -86,3 +86,13 @@ function copyIban() {
     }, 2000);
   });
 }
+
+// Contact number reveal / hide toggle
+function revealContact(person) {
+  const display = document.getElementById(person + 'Display');
+  const btn = document.getElementById(person + 'Btn');
+  display.classList.toggle('visible');
+  const isVisible = display.classList.contains('visible');
+  btn.querySelector('.it').textContent = isVisible ? 'Nascondi numero' : 'Mostra numero';
+  btn.querySelector('.en').textContent = isVisible ? 'Hide number' : 'Show number';
+}

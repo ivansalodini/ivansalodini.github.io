@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ivan & Alessia — 12 Giugno 2027</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,6 +24,7 @@
   <a href="#travel"><span class="it">Come arrivare</span><span class="en">Travel</span></a>
   <a href="#registry"><span class="it">Lista nozze</span><span class="en">Registry</span></a>
   <a href="#rsvp">RSVP</a>
+  <a href="#contacts"><span class="it">Contatti</span><span class="en">Contacts</span></a>
 </nav>
 
 <!-- HERO -->
@@ -280,7 +282,7 @@
   <p class="it">Confermate la vostra presenza entro il <strong>1 Gennaio 2027</strong> così possiamo organizzarci al meglio. Non vediamo l'ora!</p>
   <p class="en">Please let us know by <strong>1 January 2027</strong> so we can plan accordingly. We can't wait to celebrate with you!</p>
 
-  <form class="rsvp-form" id="rsvpForm" action="https://formspree.io/f/xkoewwag" method="POST" onsubmit="handleRSVP(event)">
+  <form class="rsvp-form" id="rsvpForm" onsubmit="handleRSVP(event)">
     <div class="form-row">
       <div class="form-group">
         <label><span class="it">Nome</span><span class="en">First name</span></label>
@@ -329,6 +331,58 @@
   <div class="form-success" id="formSuccess">
     <span class="it">Grazie! Abbiamo ricevuto la vostra conferma — non vediamo l'ora di festeggiare insieme.</span>
     <span class="en">Thank you! We've received your RSVP and we can't wait to celebrate with you.</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACTS -->
+<section id="contacts">
+  <div class="section-label it">Contatti</div>
+  <div class="section-label en">Contacts</div>
+  <h2 class="it">Hai bisogno di <em>aiuto?</em></h2>
+  <h2 class="en">Need to get in <em>touch?</em></h2>
+  <p class="it">Per qualsiasi domanda o necessità, non esitate a contattarci direttamente.</p>
+  <p class="en">For any question or need, feel free to reach out to us directly.</p>
+
+  <div class="details-grid" style="grid-template-columns: repeat(2, 1fr);">
+
+    <div class="detail-card">
+      <span class="detail-card-label">Ivan</span>
+      <div class="detail-card-value">Ivan Salodini</div>
+      <span class="detail-card-sub it">Sposo</span>
+      <span class="detail-card-sub en">Groom</span>
+      <button class="iban-reveal-btn" onclick="revealContact('ivan')" id="ivanBtn" style="margin-top:1rem;">
+        <span class="it">Mostra numero</span><span class="en">Show number</span>
+      </button>
+      <div class="iban-display" id="ivanDisplay">
+        <span class="iban-label it">Cellulare</span>
+        <span class="iban-label en">Mobile</span>
+        <div class="iban-number">+39 346 078 4647</div>
+        <a href="tel:+393460784647" class="map-link" style="margin-top:8px; display:inline-block;">
+          <span class="it">Chiama →</span><span class="en">Call →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="detail-card">
+      <span class="detail-card-label">Alessia</span>
+      <div class="detail-card-value">Alessia Avitabile</div>
+      <span class="detail-card-sub it">Sposa</span>
+      <span class="detail-card-sub en">Bride</span>
+      <button class="iban-reveal-btn" onclick="revealContact('alessia')" id="alessiaBtn" style="margin-top:1rem;">
+        <span class="it">Mostra numero</span><span class="en">Show number</span>
+      </button>
+      <div class="iban-display" id="alessiaDisplay">
+        <span class="iban-label it">Cellulare</span>
+        <span class="iban-label en">Mobile</span>
+        <div class="iban-number">+39 339 225 6459</div>
+        <a href="tel:+393392256459" class="map-link" style="margin-top:8px; display:inline-block;">
+          <span class="it">Chiama →</span><span class="en">Call →</span>
+        </a>
+      </div>
+    </div>
+
   </div>
 </section>
 
