@@ -29,7 +29,7 @@ function setLang(lang) {
 }
 
 // Countdown timer
-const wedding = new Date('2027-06-12T16:00:00');
+const wedding = new Date('2027-07-12T16:00:00+02:00');
 
 function updateCountdown() {
   const diff = wedding - new Date();
