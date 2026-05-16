@@ -372,9 +372,7 @@ body.lang-en span.en { display: inline; }
   animation: slideLeft 60s linear infinite;
   width: max-content;
 }
-.slider-wrap:hover .slider-track {
-  animation-play-state: paused;
-}
+
 .slider-item {
   width: clamp(180px, 28vw, 320px);
   height: clamp(220px, 35vw, 400px);
