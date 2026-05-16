@@ -341,3 +341,53 @@ body.lang-en span.en { display: inline; }
   color: var(--mid); margin-top: 2.5rem;
   opacity: 0; animation: fadeUp 1s 0.9s forwards;
 }
+
+/* SCROLL INDICATOR */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  color: var(--mid);
+  opacity: 0;
+  animation: fadeUp 1s 1.8s forwards, bounce 2s 2.8s ease-in-out infinite;
+  cursor: pointer;
+}
+.scroll-indicator:hover { color: var(--sepia); }
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* SLIDESHOW */
+.slideshow-wrap {
+  width: min(960px, 96vw);
+  margin: 0 auto 0;
+  position: relative;
+}
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: clamp(280px, 55vw, 560px);
+  overflow: hidden;
+  border-radius: 4px;
+}
+.slide {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.slide.active { opacity: 1; }
+.slideshow-dots {
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: 14px;
+}
+.dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--mid); opacity: 0.35;
+  transition: opacity 0.3s, background 0.3s;
+  cursor: pointer;
+}
+.dot.active { background: var(--sepia); opacity: 1; }
