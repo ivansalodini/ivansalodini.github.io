@@ -70,8 +70,8 @@ function revealIban() {
   const btn = document.getElementById('ibanBtn');
   display.classList.toggle('visible');
   const isVisible = display.classList.contains('visible');
-  btn.querySelector('.it').textContent = isVisible ? 'Nascondi IBAN' : 'Mostra IBAN';
-  btn.querySelector('.en').textContent = isVisible ? 'Hide IBAN' : 'Reveal IBAN';
+  btn.querySelector('.it').textContent = isVisible ? 'Nascondi' : 'Come contribuire';
+  btn.querySelector('.en').textContent = isVisible ? 'Hide' : 'How to contribute';
 }
 
 // Copy IBAN to clipboard
