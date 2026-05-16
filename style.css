@@ -328,7 +328,8 @@ body.lang-en span.en { display: inline; }
   font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
   color: #25D366; text-decoration: none;
   border-bottom: 1px solid rgba(37,211,102,0.3);
-  transition: border-color 0.2s; margin-left: 0; display: inline-block;
+  transition: border-color 0.2s; margin-left: 0;
+  display: block; width: fit-content;
 }
 .whatsapp-link:hover { border-color: #25D366; }
 .whatsapp-link svg { fill: #25D366; }
