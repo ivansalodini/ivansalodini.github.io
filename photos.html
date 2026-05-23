@@ -219,12 +219,53 @@
   });
   fileInput.addEventListener('change', () => handleFiles(Array.from(fileInput.files)));
 
+  // ── HELPERS ──────────────────────────────────────────────────
+  async function getIP() {
+    try {
+      const r = await fetch('https://api.ipify.org?format=json');
+      const d = await r.json();
+      return d.ip;
+    } catch { return 'UNKNOWN'; }
+  }
+
+  function getDeviceModel() {
+    const ua = navigator.userAgent;
+    if (/iPhone/.test(ua)) {
+      const m = ua.match(/iPhone OS ([\d_]+)/);
+      return 'iPhone' + (m ? '_iOS' + m[1].replace(/_/g, '.') : '');
+    }
+    if (/iPad/.test(ua)) return 'iPad';
+    if (/Android/.test(ua)) {
+      const m = ua.match(/;\s*([^;)]+)\sBuild/);
+      return m ? m[1].trim().replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_-]/g, '') : 'Android';
+    }
+    if (/Windows/.test(ua)) return 'Windows';
+    if (/Mac/.test(ua)) return 'Mac';
+    if (/Linux/.test(ua)) return 'Linux';
+    return 'Unknown';
+  }
+
+  function buildFileName(file, ip) {
+    const now = new Date();
+    const pad = (n, l=2) => String(n).padStart(l, '0');
+    const YYYY = now.getFullYear();
+    const MM   = pad(now.getMonth() + 1);
+    const DD   = pad(now.getDate());
+    const HH   = pad(now.getHours());
+    const UU   = pad(now.getMinutes());
+    const SS   = pad(now.getSeconds());
+    const GG   = pad(now.getMilliseconds(), 3);
+    const model = getDeviceModel();
+    const ext = file.name.split('.').pop().toLowerCase();
+    return `_${YYYY}.${MM}.${DD}_${HH}.${UU}.${SS}.${GG}_${ip}_${model}.${ext}`;
+  }
+
   // ── UPLOAD ───────────────────────────────────────────────────
   function handleFiles(files) {
     files.filter(f => f.type.startsWith('image/')).forEach(uploadFile);
   }
 
-  function uploadFile(file) {
+  async function uploadFile(file) {
     const queue = document.getElementById('uploadQueue');
     const id = 'q' + Date.now() + Math.random().toString(36).slice(2);
 
@@ -241,9 +282,9 @@
       <div class="queue-status" id="st-${id}">0%</div>`;
     queue.prepend(item);
 
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-    const path = `/${timestamp}_${safeName}`;
+    const ip = await getIP();
+    const fileName = buildFileName(file, ip);
+    const path = `/${fileName}`;
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
