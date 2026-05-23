@@ -206,7 +206,7 @@ p { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 1rem; }
   text-transform: uppercase; background: none;
   border-radius: 2px; cursor: pointer; transition: all 0.2s;
 }
-.iban-reveal-btn:hover { background: var(--sepia); color: var(--bg); }
+.iban-reveal-btn:hover { background: var(--sepia); color: #ffffff; }
 .iban-display {
   display: none; margin-top: 1.5rem;
   padding: 1.25rem; background: var(--bg);
@@ -259,7 +259,7 @@ p { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 1rem; }
   letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
   transition: background 0.2s;
 }
-.submit-btn:hover { background: var(--dark); }
+.submit-btn:hover { background: var(--dark); color: #ffffff; }
 .submit-btn span { color: #ffffff; }
 .form-success {
   display: none; padding: 2rem; background: var(--warm);
@@ -385,7 +385,7 @@ body.lang-en span.en { display: inline; }
 }
 @keyframes slideLeft {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  100% { transform: translateX(-50%); }
 }
 
 /* BACK TO TOP */
@@ -399,7 +399,7 @@ body.lang-en span.en { display: inline; }
   transition: opacity 0.3s, border-color 0.2s;
 }
 .back-to-top.visible { opacity: 1; pointer-events: auto; }
-.back-to-top:hover { border-color: var(--sepia); }
+.back-to-top:hover { border-color: var(--sepia); color: #ffffff; background: var(--sepia); }
 
 /* MOUSE WHEEL ANIMATION */
 .scroll-indicator svg line {
@@ -411,3 +411,6 @@ body.lang-en span.en { display: inline; }
   61%  { transform: translateY(0); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
 }
+/* Force white text on all button spans on hover */
+.iban-reveal-btn:hover span,
+.submit-btn:hover span { color: #ffffff; }
