@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAVE the DATE - Ivan & Alessia</title>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ivanalessia.com/savethedate.html">
+<meta property="og:image" content="https://ivanalessia.com/Save_The_Date.jpeg">
+<meta name="twitter:image" content="https://ivanalessia.com/Save_The_Date.jpeg">
+<meta property="og:title" content="SAVE the DATE - Ivan & Alessia">
+<meta property="og:description" content="Vi aspettiamo a Varese il 12 Giugno 2027 per festeggiare assieme il nostro matrimonio. Visitate il nostro sito per tutti i dettagli.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SAVE the DATE - Ivan & Alessia">
+<meta name="twitter:description" content="Vi aspettiamo a Varese il 12 Giugno 2027 per festeggiare assieme il nostro matrimonio. Visitate il nostro sito per tutti i dettagli.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: #FFF8F3;
+  }
+  body {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* ── CARD ─────────────────────────────────────────────── */
+  .card {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #FFF8F3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6vh;
+    padding: 0 8vw 60px;
+  }
+
+  /* ── TOP: SAVE the DATE ─────────────────────────────── */
+  .card-top { text-align: center; line-height: 1; }
+
+  .word-save,
+  .word-date {
+    display: block;
+    font-family: 'Cormorant SC', serif;
+    font-weight: 300;
+    font-size: clamp(72px, 18vmin, 140px);
+    letter-spacing: 0.04em;
+    color: #7A6248;
+    line-height: 1;
+    opacity: 0;
+  }
+
+  .word-the {
+    display: block;
+    font-family: 'Slight', cursive;
+    font-size: clamp(36px, 9vmin, 70px);
+    color: #7A6248;
+    line-height: 1.3;
+    font-weight: 400;
+    opacity: 0;
+  }
+
+  /* ── BOTTOM DETAILS ─────────────────────────────────── */
+  .card-bottom {
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+  }
+
+  .detail-date {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(15px, 3.2vmin, 26px);
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.18em;
+    color: #B1A1A1;
+    text-transform: uppercase;
+    margin-bottom: clamp(5px, 1vmin, 10px);
+  }
+
+  .detail-names {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(11px, 2.4vmin, 20px);
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    color: #B1A1A1;
+    text-transform: uppercase;
+    margin-bottom: clamp(5px, 1vmin, 10px);
+  }
+
+  .detail-place {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(15px, 3.2vmin, 26px);
+    font-style: italic;
+    font-weight: 400;
+    color: #B1A1A1;
+    margin-bottom: clamp(16px, 3.5vmin, 32px);
+  }
+
+  .detail-rule {
+    width: clamp(36px, 6vmin, 60px); height: 1px;
+    background: #B1A1A1;
+    margin: 0 auto clamp(16px, 3.5vmin, 32px);
+    opacity: 0.5;
+    transform: scaleX(0);
+    transform-origin: center;
+  }
+
+  .detail-invite {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(15px, 3.2vmin, 26px);
+    font-style: italic;
+    font-weight: 400;
+    color: #B1A1A1;
+  }
+
+  /* ── ANIMATIONS ─────────────────────────────────────── */
+  .word-save {
+    animation: wordUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
+  }
+  .word-the {
+    animation: scriptIn 1.3s cubic-bezier(0.16,1,0.3,1) 0.9s forwards;
+  }
+  .word-date {
+    animation: wordUp 1.1s cubic-bezier(0.16,1,0.3,1) 1.4s forwards;
+  }
+  .card-bottom {
+    animation: bottomUp 1.2s cubic-bezier(0.16,1,0.3,1) 2.1s forwards;
+  }
+  .detail-rule {
+    animation: ruleIn 0.9s ease 2.9s forwards;
+  }
+
+  @keyframes wordUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scriptIn {
+    from { opacity: 0; transform: translateX(-12px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes bottomUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ruleIn {
+    to { transform: scaleX(1); }
+  }
+
+  /* ── SITE LINK ──────────────────────────────────────── */
+  .site-link {
+    position: fixed; bottom: 22px; left: 0; right: 0;
+    text-align: center;
+    opacity: 0;
+    animation: bottomUp 1s ease 3.4s forwards;
+  }
+  .site-link a {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px; font-weight: 400;
+    letter-spacing: 0.18em;
+    color: #FFF8F3;
+    text-decoration: none;
+    background: #7A6248;
+    border-radius: 2px;
+    padding: 10px 28px;
+    display: inline-block;
+    transition: opacity 0.2s;
+  }
+  .site-link a:hover { opacity: 0.85; }
+  @font-face {
+    font-family: 'Slight';
+    src: url('Slight.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-top">
+    <span class="word-save">SAVE</span>
+    <span class="word-the">the</span>
+    <span class="word-date">DATE</span>
+  </div>
+  <div class="card-bottom">
+    <div class="detail-date">12 Giugno 2027</div>
+    <div class="detail-names">Ivan &amp; Alessia</div>
+    <div class="detail-place">Varese</div>
+    <div class="detail-rule"></div>
+    <div class="detail-invite">Invito a seguire</div>
+  </div>
+</div>
+
+<div class="site-link">
+  <a href="https://ivanalessia.com">Clicca Qui per Tutte le Informazioni</a>
+</div>
+
+</body>
+</html>

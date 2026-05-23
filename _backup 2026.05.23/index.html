@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivan & Alessia — 12 Giugno 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ivanalessia.com">
+<meta property="og:image" content="https://ivanalessia.com/preview.jpeg">
+<meta name="twitter:image" content="https://ivanalessia.com/preview.jpeg">
+<meta property="og:title" content="Ivan & Alessia — 12 Giugno 2027">
+<meta property="og:description" content="Vi aspettiamo a Varese il 12 Giugno 2027 per festeggiare assieme il nostro matrimonio. Visitate il nostro sito per tutti i dettagli.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ivan & Alessia — 12 Giugno 2027">
+<meta name="twitter:description" content="Vi aspettiamo a Varese il 12 Giugno 2027 per festeggiare assieme il nostro matrimonio. Visitate il nostro sito per tutti i dettagli.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" id="btn-it" onclick="setLang('it')">IT</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#ceremony"><span class="it">Il Nostro Giorno</span><span class="en">Our Special Day</span></a>
+  <a href="#schedule"><span class="it">Programma</span><span class="en">Schedule</span></a>
+  <a href="#travel"><span class="it">Come arrivare</span><span class="en">Getting there</span></a>
+  <a href="#registry"><span class="it">I Nostri Desideri</span><span class="en">Our wishes</span></a>
+  <a href="#rsvp">RSVP</a>
+  <a href="#contacts"><span class="it">Contatti</span><span class="en">Contacts</span></a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ornament">
+    <span class="it">Ci sposiamo</span><span class="en">We are getting married</span>
+  </div>
+  <h1>Ivan &amp; <em>Alessia</em></h1>
+  <div class="hero-date">
+    <span class="it">Sabato · 12 Giugno 2027 · Varese</span>
+    <span class="en">Saturday · 12 June 2027 · Varese</span>
+  </div>
+  <div class="hero-divider"></div>
+  <div class="countdown-intro">
+    <span class="it">Manca poco al grande giorno</span>
+    <span class="en">Days until the wedding</span>
+  </div>
+  <div class="countdown">
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-days">—</span>
+      <span class="countdown-label"><span class="it">Giorni</span><span class="en">Days</span></span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-hours">—</span>
+      <span class="countdown-label"><span class="it">Ore</span><span class="en">Hours</span></span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-mins">—</span>
+      <span class="countdown-label"><span class="it">Minuti</span><span class="en">Minutes</span></span>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg width="18" height="26" viewBox="0 0 18 26" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 6px;">
+      <rect x="1" y="1" width="16" height="24" rx="8"/>
+      <line x1="9" y1="6" x2="9" y2="10"/>
+    </svg>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7l6 6 6-6"/>
+    </svg>
+  </div>
+</div>
+
+<!-- SLIDER -->
+<div class="story-label-wrap">
+  <div class="section-label it" style="max-width:780px;margin:3rem auto 0;padding:0 2rem;">La nostra storia</div>
+  <div class="section-label en" style="max-width:780px;margin:3rem auto 0;padding:0 2rem;">Our story</div>
+</div>
+<div class="slider-wrap">
+  <div class="slider-track">
+    <div class="slider-item" style="background-image:url('slideshow/photo1.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo2.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo3.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo4.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo5.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo6.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo7.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo8.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo9.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo10.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo11.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo12.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo13.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo14.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo15.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo16.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo17.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo18.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo19.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo1.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo2.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo3.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo4.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo5.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo6.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo7.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo8.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo9.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo10.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo11.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo12.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo13.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo14.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo15.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo16.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo17.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo18.jpg')"></div>
+    <div class="slider-item" style="background-image:url('slideshow/photo19.jpg')"></div>
+  </div>
+</div>
+
+<!-- CEREMONY -->
+<section id="ceremony">
+  <div class="section-label it">Il Nostro Giorno</div>
+  <div class="section-label en">Our Special Day</div>
+  <h2 class="it">Condividere <em>l'inizio di tutto</em></h2>
+  <h2 class="en">Sharing the <em>start of it all</em></h2>
+  <p class="it">Siamo felici di invitarvi a celebrare il nostro matrimonio insieme a noi, circondati dall'amore delle persone che rendono la nostra vita così speciale.</p>
+  <p class="en">We are delighted to invite you to celebrate our wedding with us, surrounded by the love of the people who make our lives so special.</p>
+
+  <div class="details-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <!-- 1. CHURCH -->
+    <div class="detail-card">
+      <div class="detail-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;stroke:#7A6248;">
+          <path d="M12 2v4M10 4h4"/>
+          <path d="M4 22V10l8-6 8 6v12H4z"/>
+          <rect x="9" y="14" width="6" height="8"/>
+          <path d="M9 10h6"/>
+        </svg>
+      </div>
+      <span class="detail-card-label it">Chiesa · 16:00</span>
+      <span class="detail-card-label en">Church · 16:00</span>
+      <div class="detail-card-value">Chiesa di Sant'Antonio Abate</div>
+      <span class="detail-card-sub">
+        <span class="it">Varese, Italia</span>
+        <span class="en">Varese, Italy</span>
+      </span>
+      <a href="https://maps.app.goo.gl/4VHxfXzosDkDR2PS9" class="map-link" target="_blank">
+        <span class="it">Apri in Maps →</span><span class="en">Open in Maps →</span>
+      </a>
+    </div>
+    <!-- 2. VENUE -->
+    <div class="detail-card">
+      <div class="detail-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;stroke:#7A6248;">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <path d="M9 22V12h6v10"/>
+          <path d="M7 9h2M15 9h2M7 13h2M15 13h2"/>
+        </svg>
+      </div>
+      <span class="detail-card-label it">Ricevimento · 17:00</span>
+      <span class="detail-card-label en">Reception · 17:00</span>
+      <div class="detail-card-value">Villa Esengrini Montalbano</div>
+      <span class="detail-card-sub">
+        <span class="it">Varese, Italia</span>
+        <span class="en">Varese, Italy</span>
+      </span>
+      <a href="https://maps.app.goo.gl/q679ve2Z2m2urk7M8" class="map-link" target="_blank">
+        <span class="it">Apri in Maps →</span><span class="en">Open in Maps →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="section-label it">Programma</div>
+  <div class="section-label en">Schedule</div>
+  <h2 class="it">Tutti i momenti del <em>nostro giorno speciale</em></h2>
+  <h2 class="en">Every moment of <em>our special day</em></h2>
+  <div class="schedule-list">
+    <div class="schedule-item">
+      <div class="sch-time">15:30</div>
+      <div class="sch-content">
+        <h3 class="it">Arrivo degli ospiti</h3>
+        <h3 class="en">Guests arrive</h3>
+        <p class="it">I cancelli di Villa Esengrini Montalbano saranno aperti per accogliervi a partire dalle 15:30. Potrete parcheggiare comodamente presso la Villa e raggiungere la chiesa con una piacevole passeggiata di pochi minuti.</p>
+        <p class="en">The gates of Villa Esengrini Montalbano will open to welcome you starting from 3:30 PM. You will be able to park conveniently at the Villa and reach the church with a pleasant walk of just a few minutes.</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">16:00</div>
+      <div class="sch-content">
+        <h3 class="it">Cerimonia</h3>
+        <h3 class="en">Ceremony</h3>
+        <p class="it">La cerimonia si terrà nella meravigliosa Chiesa di Sant'Antonio Abate, nel cuore di Piazza della Motta.</p>
+        <p class="en">The ceremony will take place in the wonderful Church of Sant'Antonio Abate, in the heart of Piazza della Motta.</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">17:00</div>
+      <div class="sch-content">
+        <h3 class="it">Ricevimento</h3>
+        <h3 class="en">Ricevimento</h3>
+        <p class="it">Dopo la cerimonia, potrete tornare a Villa Esengrini Montalbano, dove i golf cart vi attenderanno per accompagnarvi fino alla location dell'aperitivo. Lì ci ritroveremo per brindare insieme, per la prima volta, all'inizio della nostra nuova avventura.</p>
+        <p class="en">After the ceremony, you may return to Villa Esengrini Montalbano, where golf carts will be waiting to accompany you to the aperitif location. There, we will gather to raise a toast together, for the very first time, to the beginning of our new adventure.</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">19:00</div>
+      <div class="sch-content">
+        <h3 class="it">Cena</h3>
+        <h3 class="en">Dinner</h3>
+        <p class="it">Terminato l'aperitivo, sarete accompagnati alla scoperta di un'altra splendida area di Villa Esengrini Montalbano, dove avrà inizio il banchetto della cena.</p>
+        <p class="en">Once the aperitif has concluded, you will be guided to discover another beautiful area of Villa Esengrini Montalbano, where the wedding dinner banquet will begin.</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">00:00</div>
+      <div class="sch-content">
+        <h3 class="it">Taglio della Torta, Ballo e… Festa!</h3>
+        <h3 class="en">Taglio della Torta, Ballo e… Festa!</h3>
+        <p class="it">Al termine della cena, taglieremo insieme la torta nuziale e apriremo le danze con il nostro primo ballo da marito e moglie. A seguire, inizierà la festa: DJ set, open bar e tanta voglia di divertirci insieme fino a tarda sera!</p>
+        <p class="en">At the end of the dinner, we will cut the wedding cake together and open the dance floor with our first dance as husband and wife. Afterwards, the celebration will continue with a DJ set, open bar, and plenty of fun together late into the evening!</p>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="sch-time">01:00</div>
+      <div class="sch-content">
+        <h3 class="it">Saluti finali</h3>
+        <h3 class="en">Farewell</h3>
+        <p class="it">Prima di salutarci, saremo felici di ringraziarvi personalmente e consegnarvi un piccolo ricordo di questa giornata speciale.</p>
+        <p class="en">Before saying goodbye, we will be delighted to thank you personally and offer you a small keepsake of this special day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TRAVEL -->
+<section id="travel">
+  <div class="section-label it">Come arrivare</div>
+  <div class="section-label en">Getting there</div>
+  <h2 class="it">Viaggio &amp; <em>Alloggio</em></h2>
+  <h2 class="en">Travel &amp; <em>Accommodation</em></h2>
+  <p class="it">Vogliamo rendere il vostro arrivo semplice e comodo: qui trovate tutto ciò che c'è da sapere.</p>
+  <p class="en">We would like to make your arrival as simple and comfortable as possible: here you will find everything you need to know.</p>
+  <div class="travel-list">
+
+    <div class="travel-item">
+      <div class="travel-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+      </div>
+      <div>
+        <h3 class="it">In aereo</h3>
+        <h3 class="en">By plane</h3>
+        <p class="it">L'aeroporto più vicino è <strong>Milano Malpensa (MXP)</strong>, a circa 40 minuti dalla Villa in auto.</p>
+        <p class="en">The nearest airport is <strong>Milan Malpensa (MXP)</strong>, about 40 minutes from the Villa by car.</p>
+        <a href="https://maps.app.goo.gl/tZxUDUaMHaRAKmfB8" class="map-link" target="_blank" style="margin-top:8px; display:inline-block;">
+          <span class="it">Percorso da Malpensa →</span><span class="en">Route from Malpensa →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="travel-item">
+      <div class="travel-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M3 9h18M8 4v12M16 4v12M1 20h4M19 20h4M5 20l2-4M19 20l-2-4"/></svg>
+      </div>
+      <div>
+        <h3 class="it">In treno</h3>
+        <h3 class="en">By train</h3>
+        <p class="it">Da <strong>Milano Centrale</strong> prendi il treno Trenord fino a Varese, poi un breve taxi fino alla Villa.</p>
+        <p class="en">From <strong>Milano Centrale</strong> take the Trenord train to Varese, then a short taxi to the Villa.</p>
+        <a href="https://maps.app.goo.gl/u4GWVVwmVqoYqdpRA" class="map-link" target="_blank" style="margin-top:8px; display:inline-block;">
+          <span class="it">Percorso da Milano Centrale →</span><span class="en">Route from Milano Centrale →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="travel-item">
+      <div class="travel-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 17H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h11l3 4v5a2 2 0 0 1-2 2z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><path d="M5 12h14M12 6v6"/></svg>
+      </div>
+      <div>
+        <h3 class="it">In auto</h3>
+        <h3 class="en">By car</h3>
+        <p class="it">Parcheggio gratuito disponibile a Villa Esengrini Montalbano. Parcheggiate lì e raggiungete a piedi la chiesa di Sant'Antonio Abate, a pochi minuti di cammino.</p>
+        <p class="en">Free parking is available at Villa Esengrini Montalbano. Park there and walk to the church of Sant'Antonio Abate — just a few minutes on foot.</p>
+      </div>
+    </div>
+
+    <div class="travel-item">
+      <div class="travel-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div style="flex:1;">
+        <h3 class="it">Dove alloggiare</h3>
+        <h3 class="en">Where to stay</h3>
+        <p class="it">Abbiamo una partnership con il <strong>Bis Hotel Varese</strong>. Menzionate "Matrimonio Ivan &amp; Alessia" al momento della prenotazione per le tariffe riservate.</p>
+        <p class="en">We have a partnership with <strong>Bis Hotel Varese</strong>. Mention "Ivan &amp; Alessia wedding" when booking to access our reserved rates.</p>
+        <a href="https://maps.app.goo.gl/5P7TdJPremgg4f8m6" class="map-link" target="_blank" style="margin-top:8px; display:inline-block;">
+          <span class="it">Vedi su Maps →</span><span class="en">View on Maps →</span>
+        </a>
+        <button class="iban-reveal-btn" onclick="revealPrices()" id="pricesBtn" style="margin-top:1rem; display:block;">
+          <span class="it">Mostra tariffe →</span><span class="en">Show rates →</span>
+        </button>
+        <button class="iban-reveal-btn" onclick="revealHotelContacts()" id="hotelContactsBtn" style="margin-top:0.75rem; display:block;">
+          <span class="it">Mostra contatti →</span><span class="en">Show contacts →</span>
+        </button>
+        <div class="iban-display" id="hotelContactsDisplay" style="text-align:left;">
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="mailto:booking@bishotelvarese.it" class="map-link" style="display:block; width:fit-content;">
+              <span class="it">✉ booking@bishotelvarese.it</span>
+              <span class="en">✉ booking@bishotelvarese.it</span>
+            </a>
+            <a href="tel:+3903321810166" class="map-link" style="display:block; width:fit-content;">
+              <span class="it">✆ +39 0332 1810166</span>
+              <span class="en">✆ +39 0332 1810166</span>
+            </a>
+            <a href="https://wa.me/393920011275" class="whatsapp-link" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.882a.5.5 0 0 0 .614.635l6.284-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 0 1-5.127-1.424l-.364-.214-3.733.973.998-3.642-.236-.374A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+              +39 392 001 1275
+            </a>
+          </div>
+        </div>
+        <div class="iban-display" id="pricesDisplay" style="text-align:left;">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th><span class="it">Senza colazione</span><span class="en">Room only</span></th>
+                <th><span class="it">Con colazione</span><span class="en">With breakfast</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="room-type"><span class="it">Singola</span><span class="en">Single</span></td>
+                <td>€ 79</td>
+                <td>€ 89</td>
+              </tr>
+              <tr>
+                <td class="room-type"><span class="it">Doppia / Matrimoniale</span><span class="en">Double / Twin</span></td>
+                <td>€ 89</td>
+                <td>€ 99</td>
+              </tr>
+              <tr>
+                <td class="room-type"><span class="it">Tripla</span><span class="en">Triple</span></td>
+                <td>€ 115</td>
+                <td>€ 129</td>
+              </tr>
+              <tr>
+                <td class="room-type"><span class="it">Quadrupla</span><span class="en">Quadruple</span></td>
+                <td>€ 139</td>
+                <td>€ 159</td>
+              </tr>
+              <tr>
+                <td class="room-type"><span class="it">Quintupla</span><span class="en">Quintuple</span></td>
+                <td>€ 169</td>
+                <td>€ 189</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size:11px; margin-top:8px; color:var(--mid);">
+            <span class="it">Prezzi per notte · soggetti a disponibilità</span>
+            <span class="en">Prices per night · subject to availability</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REGISTRY -->
+<section id="registry">
+  <div class="section-label it">I Nostri Desideri</div>
+  <div class="section-label en">Our wishes</div>
+  <h2 class="it">Il regalo più grande <em>è avervi con noi</em></h2>
+  <h2 class="en">The greatest gift is <em>having you by our side</em></h2>
+  <div class="registry-box">
+    <p class="it">Il nostro desiderio più grande è che possiate vivere con noi una giornata all'insegna dell'amore, del divertimento e della bellezza. Se vorrete accompagnarci anche nel prossimo capitolo della nostra vita, potrete contribuire ai nostri progetti futuri.</p>
+    <p class="en">Our greatest wish is for you to share with us a day filled with love, joy, and beauty. If you would also like to accompany us in the next chapter of our lives, you may contribute to our future plans.</p>
+    <button class="iban-reveal-btn" onclick="revealIban()" id="ibanBtn">
+      <span class="it">Come contribuire</span><span class="en">How to contribute</span>
+    </button>
+    <div class="iban-display" id="ibanDisplay">
+      <span class="iban-label">IBAN</span>
+      <div class="iban-number" id="ibanNumber">IT13T0366901600580983344068</div>
+      <button class="iban-copy" onclick="copyIban()">
+        <span class="it" id="copyLabel-it">Copia →</span>
+        <span class="en" id="copyLabel-en">Copy →</span>
+      </button>
+      <div style="margin-top:12px; font-size:12px; color:var(--mid);">
+        <span class="it">Intestato a: <strong>Maria Alessia Avitabile &amp; Ivan Salodini</strong></span>
+        <span class="en">Account holder: <strong>Maria Alessia Avitabile &amp; Ivan Salodini</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RSVP -->
+<section id="rsvp">
+  <div class="section-label">RSVP</div>
+  <h2 class="it">Ci <em>sarete?</em></h2>
+  <h2 class="en">Will you <em>join us?</em></h2>
+  <p class="it">Vi preghiamo di confermare la vostra presenza entro il <strong>1° febbraio 2027</strong> compilando il form qui sotto, così da aiutarci a organizzare al meglio ogni dettaglio della giornata.</p>
+  <p class="en">Please confirm your attendance by <strong>February 1st, 2027</strong>, by filling out the form below, so that you can help us organize every detail of the day in the best possible way.</p>
+
+  <form class="rsvp-form" id="rsvpForm" onsubmit="handleRSVP(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label><span class="it">Nome</span><span class="en">First name</span></label>
+        <input type="text" name="fname" required>
+      </div>
+      <div class="form-group">
+        <label><span class="it">Cognome</span><span class="en">Last name</span></label>
+        <input type="text" name="lname" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label><span class="it">Indirizzo email</span><span class="en">Email address</span></label>
+      <input type="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label><span class="it">Parteciperete?</span><span class="en">Are you attending?</span></label>
+      <select name="attending" id="select-attending" required>
+        <option value=""></option>
+        <option value="yes">Sì, ci saremo!</option>
+        <option value="no">Purtroppo non possiamo</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label><span class="it">Numero di ospiti</span><span class="en">Number of guests</span></label>
+      <input type="number" name="guests" id="select-guests" min="1" max="20" placeholder="es. 2">
+    </div>
+    <div class="form-group">
+      <label>
+        <span class="it">Nomi e cognomi di tutti i partecipanti</span>
+        <span class="en">Full names of all attendees</span>
+      </label>
+      <textarea name="attendees" placeholder="es. Mario Rossi, Giulia Bianchi…"></textarea>
+    </div>
+    <div class="form-group">
+      <label><span class="it">Intolleranze alimentari</span><span class="en">Dietary requirements</span></label>
+      <input type="text" name="dietary" placeholder="es. vegetariano, celiaco…">
+    </div>
+    <div class="form-group">
+      <label><span class="it">Un messaggio per gli sposi</span><span class="en">A message for the couple</span></label>
+      <textarea name="message"></textarea>
+    </div>
+    <button type="submit" class="submit-btn">
+      <span class="it">Invia la conferma</span><span class="en">Send my RSVP</span>
+    </button>
+  </form>
+  <div class="form-success" id="formSuccess">
+    <span class="it">Grazie! Abbiamo ricevuto la vostra conferma — non vediamo l'ora di festeggiare insieme.</span>
+    <span class="en">Thank you! We've received your RSVP and we can't wait to celebrate with you.</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACTS -->
+<section id="contacts">
+  <div class="section-label it">Contatti</div>
+  <div class="section-label en">Contacts</div>
+  <h2 class="it">Hai bisogno di <em>aiuto?</em></h2>
+  <h2 class="en">Need to get in <em>touch?</em></h2>
+  <p class="it">Non esitate a contattarci per qualsiasi dubbio o informazione: saremo felici di aiutarvi in ogni momento.</p>
+  <p class="en">Please do not hesitate to contact us should you have any questions or need any information — we will be delighted to help you at any time.</p>
+
+  <div class="details-grid" style="grid-template-columns: repeat(2, 1fr);">
+
+    <div class="detail-card">
+      <span class="detail-card-label it">Sposo</span>
+      <span class="detail-card-label en">Groom</span>
+      <div class="detail-card-value">Ivan Salodini</div>
+      <button class="iban-reveal-btn" onclick="revealContact('ivan')" id="ivanBtn" style="margin-top:1rem;">
+        <span class="it">Mostra numero</span><span class="en">Show number</span>
+      </button>
+      <div class="iban-display" id="ivanDisplay">
+        <span class="iban-label it">Cellulare</span>
+        <span class="iban-label en">Mobile</span>
+        <div class="iban-number">+39 346 078 4647</div>
+        <a href="tel:+393460784647" class="map-link" style="margin-top:8px; display:inline-block;">
+          <span class="it">Chiama →</span><span class="en">Call →</span>
+        </a>
+        <a href="https://wa.me/393460784647" class="whatsapp-link" target="_blank" style="margin-top:10px; display:block;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.882a.5.5 0 0 0 .614.635l6.284-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 0 1-5.127-1.424l-.364-.214-3.733.973.998-3.642-.236-.374A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          <span class="it">WhatsApp →</span><span class="en">WhatsApp →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="detail-card">
+      <span class="detail-card-label it">Sposa</span>
+      <span class="detail-card-label en">Bride</span>
+      <div class="detail-card-value">Alessia Avitabile</div>
+      <button class="iban-reveal-btn" onclick="revealContact('alessia')" id="alessiaBtn" style="margin-top:1rem;">
+        <span class="it">Mostra numero</span><span class="en">Show number</span>
+      </button>
+      <div class="iban-display" id="alessiaDisplay">
+        <span class="iban-label it">Cellulare</span>
+        <span class="iban-label en">Mobile</span>
+        <div class="iban-number">+39 339 225 6459</div>
+        <a href="tel:+393392256459" class="map-link" style="margin-top:8px; display:inline-block;">
+          <span class="it">Chiama →</span><span class="en">Call →</span>
+        </a>
+        <a href="https://wa.me/393392256459" class="whatsapp-link" target="_blank" style="margin-top:10px; display:block;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.882a.5.5 0 0 0 .614.635l6.284-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 0 1-5.127-1.424l-.364-.214-3.733.973.998-3.642-.236-.374A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          <span class="it">WhatsApp →</span><span class="en">WhatsApp →</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  Ivan &amp; Alessia &nbsp;·&nbsp; 12 <span class="it">Giugno</span><span class="en">June</span> 2027
+</footer>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 10l5-5 5 5"/>
+  </svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>

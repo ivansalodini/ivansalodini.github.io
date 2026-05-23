@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Codes — Ivan & Alessia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFF8F3;
+    --warm: #F5EDE6;
+    --sepia: #7A6248;
+    --mid: #B1A1A1;
+    --dark: #000000;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    font-family: var(--sans);
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    border-bottom: 1px solid rgba(122,98,72,0.15);
+  }
+  .header-label {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--sepia); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: var(--serif); font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300; color: var(--dark);
+  }
+  header h1 em { font-style: italic; color: var(--sepia); }
+  header p {
+    font-size: 13px; color: var(--mid); margin-top: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .qr-card {
+    background: var(--warm);
+    border: 1px solid rgba(122,98,72,0.18);
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 1.25rem;
+    text-align: center;
+  }
+
+  .qr-label {
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--sepia); font-weight: 500;
+  }
+
+  .qr-box {
+    width: 160px; height: 160px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qr-box canvas, .qr-box img { width: 140px !important; height: 140px !important; }
+
+  .qr-title {
+    font-family: var(--serif);
+    font-size: 1.2rem; font-weight: 300;
+    color: var(--dark); line-height: 1.3;
+  }
+
+  .qr-url {
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--mid);
+  }
+
+  .download-btn {
+    font-family: var(--sans); font-size: 10px;
+    font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--sepia);
+    border: 1px solid rgba(122,98,72,0.35);
+    background: none; border-radius: 2px;
+    padding: 7px 16px; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .download-btn:hover { background: var(--sepia); color: var(--bg); }
+
+  .divider {
+    height: 1px; max-width: 900px; margin: 0 auto;
+    background: linear-gradient(to right, transparent, rgba(122,98,72,0.2), transparent);
+  }
+
+  @media print {
+    header { padding: 1rem; }
+    .download-btn { display: none; }
+    .grid { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Ivan &amp; Alessia · 12 Giugno 2027</div>
+  <h1>QR <em>Codes</em></h1>
+  <p>Scansiona per accedere alle pagine del matrimonio</p>
+</header>
+
+<div class="divider"></div>
+
+<div class="grid">
+
+  <div class="qr-card">
+    <div class="qr-label">Sito principale</div>
+    <div class="qr-box" id="qr1"></div>
+    <div class="qr-title">Il sito del matrimonio</div>
+    <div class="qr-url">ivanalessia.com</div>
+    <button class="download-btn" onclick="downloadQR('qr1', 'qr-wedding-site')">Scarica →</button>
+  </div>
+
+  <div class="qr-card">
+    <div class="qr-label">Save the Date</div>
+    <div class="qr-box" id="qr2"></div>
+    <div class="qr-title">Annuncio animato</div>
+    <div class="qr-url">ivanalessia.com/savethedate.html</div>
+    <button class="download-btn" onclick="downloadQR('qr2', 'qr-save-the-date')">Scarica →</button>
+  </div>
+
+  <div class="qr-card">
+    <div class="qr-label">RSVP</div>
+    <div class="qr-box" id="qr3"></div>
+    <div class="qr-title">Conferma presenza</div>
+    <div class="qr-url">ivanalessia.com/#rsvp</div>
+    <button class="download-btn" onclick="downloadQR('qr3', 'qr-rsvp')">Scarica →</button>
+  </div>
+
+</div>
+
+<script>
+  const qrData = [
+    { id: 'qr1', url: 'https://ivanalessia.com' },
+    { id: 'qr2', url: 'https://ivanalessia.com/savethedate.html' },
+    { id: 'qr3', url: 'https://ivanalessia.com/#rsvp' },
+  ];
+
+  qrData.forEach(({ id, url }) => {
+    new QRCode(document.getElementById(id), {
+      text: url,
+      width: 140,
+      height: 140,
+      colorDark: '#7A6248',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  });
+
+  function downloadQR(id, filename) {
+    const canvas = document.querySelector('#' + id + ' canvas');
+    if (!canvas) return;
+    const link = document.createElement('a');
+    link.download = filename + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }
+</script>
+</body>
+</html>
