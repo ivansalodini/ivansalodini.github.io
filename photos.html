@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le nostre foto — Ivan & Alessia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFF8F3;
+    --warm: #F5EDE6;
+    --sepia: #7A6248;
+    --mid: #6E6060;
+    --dark: #000000;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html, body { background: var(--bg); font-family: var(--sans); font-weight: 300; min-height: 100vh; }
+
+  header {
+    text-align: center; padding: 4rem 2rem 2rem;
+    border-bottom: 1px solid rgba(122,98,72,0.15);
+  }
+  .header-label {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--sepia); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: var(--serif); font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300; color: var(--dark);
+  }
+  header h1 em { font-style: italic; color: var(--sepia); }
+  header p { font-size: 14px; color: var(--mid); margin-top: 0.75rem; line-height: 1.7; }
+
+  .divider {
+    height: 1px; max-width: 780px; margin: 0 auto;
+    background: linear-gradient(to right, transparent, rgba(122,98,72,0.25), transparent);
+  }
+
+  /* UPLOAD AREA */
+  .upload-section { max-width: 680px; margin: 3rem auto; padding: 0 2rem; }
+
+  .section-label {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--sepia); font-weight: 500; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(122,98,72,0.35), transparent);
+  }
+
+  .drop-zone {
+    border: 1.5px dashed rgba(122,98,72,0.4);
+    border-radius: 4px; background: var(--warm);
+    padding: 3rem 2rem; text-align: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .drop-zone.dragover { border-color: var(--sepia); background: #F0E6DB; }
+  .drop-zone input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .drop-icon {
+    width: 36px; height: 36px; margin: 0 auto 1rem;
+    stroke: var(--sepia); fill: none; stroke-width: 1.2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .drop-title {
+    font-family: var(--serif); font-size: 1.3rem; color: var(--dark); margin-bottom: 6px;
+  }
+  .drop-sub { font-size: 13px; color: var(--mid); line-height: 1.6; }
+  .drop-sub span { color: var(--sepia); border-bottom: 1px solid rgba(122,98,72,0.3); cursor: pointer; }
+
+  /* PROGRESS */
+  .upload-queue { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 10px; }
+  .queue-item {
+    background: var(--warm); border: 1px solid rgba(122,98,72,0.15);
+    border-radius: 4px; padding: 10px 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .queue-thumb {
+    width: 44px; height: 44px; border-radius: 2px;
+    object-fit: cover; flex-shrink: 0;
+  }
+  .queue-info { flex: 1; min-width: 0; }
+  .queue-name {
+    font-size: 13px; color: var(--dark); white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px;
+  }
+  .progress-bar-wrap {
+    height: 4px; background: rgba(122,98,72,0.15); border-radius: 2px; overflow: hidden;
+  }
+  .progress-bar { height: 100%; background: var(--sepia); border-radius: 2px; transition: width 0.3s; }
+  .queue-status { font-size: 11px; color: var(--mid); flex-shrink: 0; }
+  .queue-status.done { color: var(--sepia); }
+  .queue-status.error { color: #c0392b; }
+
+  /* GALLERY */
+  .gallery-section { max-width: 960px; margin: 3rem auto 4rem; padding: 0 2rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px; margin-top: 1rem;
+  }
+  .gallery-item {
+    aspect-ratio: 1; border-radius: 4px; overflow: hidden;
+    background: var(--warm); cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .gallery-empty {
+    text-align: center; padding: 3rem; color: var(--mid);
+    font-family: var(--serif); font-size: 1.1rem; font-style: italic;
+  }
+  .gallery-loading {
+    text-align: center; padding: 2rem; color: var(--mid); font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 2px; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 24px;
+    color: rgba(255,255,255,0.7); font-size: 28px; cursor: pointer;
+    background: none; border: none; line-height: 1;
+    transition: color 0.2s;
+  }
+  .lightbox-close:hover { color: #fff; }
+
+  /* BACK LINK */
+  .back-link {
+    display: block; text-align: center; padding: 1rem;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none;
+    border-top: 1px solid rgba(122,98,72,0.15);
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--sepia); }
+
+  @media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Ivan &amp; Alessia · 12 Giugno 2027</div>
+  <h1>Le nostre <em>foto</em></h1>
+  <p class="it">Condividete i vostri scatti più belli del nostro giorno speciale!</p>
+  <p class="en" style="display:none;">Share your favourite shots from our special day!</p>
+</header>
+
+<div class="divider"></div>
+
+<!-- UPLOAD -->
+<div class="upload-section">
+  <div class="section-label">Carica le tue foto</div>
+
+  <div class="drop-zone" id="dropZone">
+    <input type="file" id="fileInput" accept="image/*" multiple>
+    <svg class="drop-icon" viewBox="0 0 24 24">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="17 8 12 3 7 8"/>
+      <line x1="12" y1="3" x2="12" y2="15"/>
+    </svg>
+    <div class="drop-title">Trascina le foto qui</div>
+    <div class="drop-sub">oppure <span>seleziona dal tuo dispositivo</span><br>JPG, PNG, HEIC · max 20MB per foto</div>
+  </div>
+
+  <div class="upload-queue" id="uploadQueue"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- GALLERY -->
+<div class="gallery-section">
+  <div class="section-label">Tutte le foto</div>
+  <div class="gallery-loading" id="galleryLoading">Caricamento...</div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+  <div class="gallery-empty" id="galleryEmpty" style="display:none;">
+    Nessuna foto ancora — sii il primo a condividere un ricordo!
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<a href="index.html" class="back-link">← Torna al sito</a>
+
+<script>
+  const TOKEN = 'sl.u.AGiHf_akhZjwOWwAQ0rG7msbjlfEJMgiv4y2xj92Vriw2IxL2ks27K0wMfMULglrLJKtfEX4fs-OlDf7q4usBiOHXpOOgaqQ9n-pd5MM4WDmOsuqvUHjNtbP1H-7MKXKIK28DmkezDFprbNXrBJ_oT1Whbyp6aKXWkuYnMAnvd3O8sfv5l1LDtnq8IDZikioBO3B1pOfT4HeL1-a1jfp43HNjYYRZSijAkxbTEgW0MBJisRHF6eEZ6sm65GgZzAjuVW8t6REKI8LeH1iI_wHO_hMIIi2m6HPCFWtGjwL_78W49Rq_KQLR_p8Wtpvv4TwR_IAA4FePd0ScCsCT-JAyWNK18-0imvDksbvpX-ubOwnZY_J8GI9HYw6u3286g4PP7kgEiEdcLFPQQWupubISwC2ERAbpt1gSfo3DWjuoTmMf_rjYYoroJDWBM0PtFQyKKT2nuDL2IQu7otguFiEC0p8t8zMi3e607qtiHyVIIE2DVRPaGkT8lLrD1lUDhGMfP6_hclHUeVWnufPnQ_g4QwMvUiWn4xlSXwM-PwnFZ08IZ2UdmSt0eayMobqX6nydSLSradcIF7f9wYSwJjucjXtXXriodRE9GYX2_vP56NG_sCCovjYJ4uKWBJh5thIIH4nsBF79pkc58xVOY_uRxAdB80hO6e7ob3jgj_KEiGI9Rz3Qz1NuXLu8zZYG4Qr6RAYuwWYMg1zsYfhdJLMtIKn1OJiaKi1f0hSnoL_e0yz0Zi2b0YloK5cHJ-KBnJOHVnOAWrVP_I1VBxFTd2SKAqmzlSGPkB6EBpyPoVfGohIPJAEtjZZPbnXwZMJ4e71c3NucO0r2Gr93JQXzFeHwE1Tbd58oq7DdxcYao0kkMB5FeEdPJKj-z-ESzhbvfeC8bTunxkmsjV5lKpQ_g9WsfmPI78RuJOOXeIw4VyEeOPqo61MbnwLKvu7lOpdZsBjHXr4ZVju8WSXDEHiB7YqrYYNoQLY3vF2sYxYMIURM6jRPFU59jDMZFty0qF-fUu36ejFcGjEfAxEWL85NVRucE1x62kdfLsBbdcs9tEoUoEZX1u75BHSfyEDwrOt17qzofGinn4AcJLSPwNYwuRBzgkzN7jMdJl9MtycSQLyQWU2S8jvFsFg3CZjwNUyZKrtZ3nIjzILWo_tsJ3nv2ZBVMOyaRPPWlh5AKrenyC_HR5d0IXDMjNLnZJmYRQ63xgTNHhlsJIivAESBaGg0jHtIi8Lix8KX1pdD1WriWcpBgdppDCXgg-hR886BggiCSKhAA42VA0iFPNo0NJhPRIgXeHQh99rqosey7A';
+  const FOLDER = '/_WEDDING_PHOTOS';
+
+  // ── DRAG & DROP ──────────────────────────────────────────────
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('dragover');
+    handleFiles(Array.from(e.dataTransfer.files));
+  });
+  fileInput.addEventListener('change', () => handleFiles(Array.from(fileInput.files)));
+
+  // ── UPLOAD ───────────────────────────────────────────────────
+  function handleFiles(files) {
+    files.filter(f => f.type.startsWith('image/')).forEach(uploadFile);
+  }
+
+  function uploadFile(file) {
+    const queue = document.getElementById('uploadQueue');
+    const id = 'q' + Date.now() + Math.random().toString(36).slice(2);
+
+    const thumb = URL.createObjectURL(file);
+    const item = document.createElement('div');
+    item.className = 'queue-item';
+    item.id = id;
+    item.innerHTML = `
+      <img class="queue-thumb" src="${thumb}" alt="">
+      <div class="queue-info">
+        <div class="queue-name">${file.name}</div>
+        <div class="progress-bar-wrap"><div class="progress-bar" id="pb-${id}" style="width:0%"></div></div>
+      </div>
+      <div class="queue-status" id="st-${id}">0%</div>`;
+    queue.prepend(item);
+
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const path = `${FOLDER}/${timestamp}_${safeName}`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN);
+    xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
+      path: path,
+      mode: 'add',
+      autorename: true,
+      mute: false
+    }));
+    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+
+    xhr.upload.onprogress = e => {
+      if (e.lengthComputable) {
+        const pct = Math.round(e.loaded / e.total * 100);
+        document.getElementById('pb-' + id).style.width = pct + '%';
+        document.getElementById('st-' + id).textContent = pct + '%';
+      }
+    };
+
+    xhr.onload = () => {
+      const st = document.getElementById('st-' + id);
+      if (xhr.status === 200) {
+        document.getElementById('pb-' + id).style.width = '100%';
+        st.textContent = '✓';
+        st.className = 'queue-status done';
+        setTimeout(() => loadGallery(), 1500);
+      } else {
+        st.textContent = '✗';
+        st.className = 'queue-status error';
+      }
+    };
+
+    xhr.onerror = () => {
+      const st = document.getElementById('st-' + id);
+      st.textContent = '✗';
+      st.className = 'queue-status error';
+    };
+
+    xhr.send(file);
+  }
+
+  // ── GALLERY ──────────────────────────────────────────────────
+  async function loadGallery() {
+    try {
+      const res = await fetch('https://api.dropboxapi.com/2/files/list_folder', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + TOKEN,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ path: FOLDER, limit: 200 })
+      });
+
+      document.getElementById('galleryLoading').style.display = 'none';
+
+      if (!res.ok) {
+        // Folder might not exist yet
+        document.getElementById('galleryEmpty').style.display = 'block';
+        return;
+      }
+
+      const data = await res.json();
+      const images = data.entries.filter(e => /\.(jpg|jpeg|png|heic|gif|webp)$/i.test(e.name));
+
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+
+      if (images.length === 0) {
+        document.getElementById('galleryEmpty').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('galleryEmpty').style.display = 'none';
+
+      for (const img of images) {
+        const thumbRes = await fetch('https://content.dropboxapi.com/2/files/get_thumbnail_v2', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + TOKEN,
+            'Dropbox-API-Arg': JSON.stringify({
+              resource: { '.tag': 'path', path: img.path_lower },
+              format: { '.tag': 'jpeg' },
+              size: { '.tag': 'w640h480' },
+              mode: { '.tag': 'fitone_bestfit' }
+            }),
+            'Content-Type': ''
+          }
+        });
+
+        if (!thumbRes.ok) continue;
+        const blob = await thumbRes.blob();
+        const url = URL.createObjectURL(blob);
+
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `<img src="${url}" alt="${img.name}" loading="lazy">`;
+        div.onclick = () => openLightbox(url);
+        grid.appendChild(div);
+      }
+    } catch (e) {
+      document.getElementById('galleryLoading').style.display = 'none';
+      document.getElementById('galleryEmpty').style.display = 'block';
+    }
+  }
+
+  // ── LIGHTBOX ─────────────────────────────────────────────────
+  function openLightbox(url) {
+    document.getElementById('lightboxImg').src = url;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeLightbox();
+  });
+
+  // Load gallery on page open
+  loadGallery();
+</script>
+</body>
+</html>
