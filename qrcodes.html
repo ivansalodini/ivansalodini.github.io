@@ -149,6 +149,14 @@
     <button class="download-btn" onclick="downloadQR('qr3', 'qr-rsvp')">Scarica →</button>
   </div>
 
+  <div class="qr-card">
+    <div class="qr-label">Foto</div>
+    <div class="qr-box" id="qr4"></div>
+    <div class="qr-title">Carica le tue foto</div>
+    <div class="qr-url">ivanalessia.com/photos.html</div>
+    <button class="download-btn" onclick="downloadQR('qr4', 'qr-photos')">Scarica →</button>
+  </div>
+
 </div>
 
 <script>
@@ -156,6 +164,7 @@
     { id: 'qr1', url: 'https://ivanalessia.com' },
     { id: 'qr2', url: 'https://ivanalessia.com/savethedate.html' },
     { id: 'qr3', url: 'https://ivanalessia.com/#rsvp' },
+    { id: 'qr4', url: 'https://ivanalessia.com/photos.html' },
   ];
 
   qrData.forEach(({ id, url }) => {
