@@ -260,6 +260,7 @@ p { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 1rem; }
   transition: background 0.2s;
 }
 .submit-btn:hover { background: var(--dark); }
+.submit-btn span { color: #ffffff; }
 .form-success {
   display: none; padding: 2rem; background: var(--warm);
   border: 1px solid rgba(122,98,72,0.25); border-radius: 4px;
