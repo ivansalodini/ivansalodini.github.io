@@ -226,7 +226,31 @@
 <a href="index.html" class="back-link">← Torna al sito</a>
 
 <script>
-  const TOKEN = 'sl.u.AGju8nZkAcDQchT_dqYh9QxUkAbtp35nNWj3UlKYXf3vxUsH87sud7t6OO9rx8Rm7VgvuhLm96QmWjMr_GgN6_mj6tJND2GLo4Y77FpSZe_CF_lP1uQe5IUolC6aBbFAhJhUysR0WLPbbF_u7maGnacoQK9IZkPDt07VUPQA4ZOk9sGllSXdZlfzQWjH-oE7Sua_br0hCZvn91ZQXjeOyHjRRYwdyIeM6CoBVbzEOz1Ge6gl15gAOpClWjULifH78RmcL3t_aJNBVoGVt57H4VcqZVHSHRHy3XxAvjsBPwrRk_AAgY1QJ1zwlxDd2ISvO4HhnI7kKT4Qia1MttKA3dMEowRcpvVoGdSidixruYH8vzAOyEBLDPo8Pqv92r6ZK2czyqVxcmkPyPobvkNzgUXEpxsl-3maM-siOHlg8VF_ldbbEsMWlQUm4B6ncwFuO_UY6PTFXwOjkU9iklJfKV36gHcYC4QhtxgT6_X7BaQIdJD0lO2z2uvtOuSZ1I2wWXvfFxNlCjSdKPqp68GX7U5a5BAjaYU-t7Xvhnmo8lZzWp4EF7Z7hNMP0KKS9HZ8Du_pm_XjOjVqxdiIXTdGGKhF9a-0MdsTu1o1N-j-cdpMPvdn7UYxuNOIdngjgFE2YQeWQiMGYxzxz2xHKZaYxj5zIRHhHi3gKFP8eR12yEwV1FrJHjoszAqFPaRozvAw9dh4ugDip2jw1kW1vEdrUBAOW3Poyqe4DdIzEPgFTsK4OXHwjAkA0soGRUlpCBHkK93QWRggEKbhbbNavXQI_DJsRMi3ud_buN9MjVCeeeEznJWnlJoHNbHggK6PiYFqEdN8PLRhiIx5ajRxZXLT6XDQoeHwF3dGRCHfzZCvcZRBnQlRslk7DGRkT065w8APaOr6XyjH6l3Emb7u7J3ockbohvhQ60IqlZFsi_hZ5A26SvvJv0MaIe5NbRzMap0FfSUOqZtu3e_C9A3LJdoENSYw6aVx0T4k8Obnv7jadGyY6i1pRrDrkDNyyNp4Q7iWE2WHNa1cWyjLfLrMkA2bGkU-d9edaijTCZHB1HEfKz4tKWIoNTfhFq1yeY0xNb-dHq8k93e5B_zg3VUR2dOKseP6_LpI2vJfJRT33qyrZzn5RJDn9ZU5KMnMB2toUUKIFPaStjtquXiyKtssnHmW4vaDFk_z_NKxh5GvLjQkTrAULzE6OIRq3eCeRDnNcaBLWNUdBzPe-YmJVS5JkzTg8elO8VEcE1NoiYyZwtNiPQYkAf8mqRqKeyt9oWHeYwZWwGcs5cuUSO1FlMnW9co3OlcfySTBuIg_fROGRmZbNWVFzQ';
+  // ── AUTH — refresh token never expires ──────────────────────
+  const APP_KEY      = '8rip1zq2ias1kx3';
+  const APP_SECRET   = 'v3dyfomb0ew4obw';
+  const REFRESH_TOKEN = 'Py6nLfy7jxcAAAAAAAAAAVD8J5XevP79Jl08C9rLPmamyaUUcMGZ1-biF1e7oUI2';
+
+  let accessToken = null;
+  let tokenExpiry = 0;
+
+  async function getToken() {
+    if (accessToken && Date.now() < tokenExpiry) return accessToken;
+    const res = await fetch('https://api.dropbox.com/oauth2/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: REFRESH_TOKEN,
+        client_id: APP_KEY,
+        client_secret: APP_SECRET
+      })
+    });
+    const data = await res.json();
+    accessToken = data.access_token;
+    tokenExpiry = Date.now() + (data.expires_in - 300) * 1000; // refresh 5 min early
+    return accessToken;
+  }
   const FOLDER = '';
 
   // ── DRAG & DROP ──────────────────────────────────────────────
@@ -363,7 +387,7 @@
       const res = await fetch('https://api.dropboxapi.com/2/files/list_folder', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + TOKEN,
+          'Authorization': 'Bearer ' + await getToken(),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ path: FOLDER, limit: 200, recursive: false })
@@ -394,7 +418,7 @@
         const thumbRes = await fetch('https://content.dropboxapi.com/2/files/get_thumbnail_v2', {
           method: 'POST',
           headers: {
-            'Authorization': 'Bearer ' + TOKEN,
+            'Authorization': 'Bearer ' + await getToken(),
             'Dropbox-API-Arg': JSON.stringify({
               resource: { '.tag': 'path', path: img.path_lower },
               format: { '.tag': 'jpeg' },
