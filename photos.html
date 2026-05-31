@@ -334,6 +334,11 @@
         st.textContent = '✓';
         st.className = 'queue-status done';
         setTimeout(() => loadGallery(), 1500);
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) { el.style.transition = 'opacity 0.5s'; el.style.opacity = '0'; }
+          setTimeout(() => { const el = document.getElementById(id); if (el) el.remove(); }, 500);
+        }, 2500);
       } else {
         st.textContent = '✗';
         st.className = 'queue-status error';
