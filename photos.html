@@ -392,6 +392,8 @@
     if (galleryLoading) return;
     galleryLoading = true;
     try {
+      // Ensure token is available first
+      await getToken();
       const listToken = await getToken();
       const res = await fetch('https://api.dropboxapi.com/2/files/list_folder', {
         method: 'POST',
@@ -488,7 +490,7 @@
   });
 
   // Load gallery on page open
-  loadGallery();
+  loadGallery().catch(e => console.warn('Gallery load error:', e));
 </script>
 </body>
 </html>
