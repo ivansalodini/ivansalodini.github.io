@@ -308,7 +308,7 @@
 
   // ── UPLOAD ───────────────────────────────────────────────────
   function handleFiles(files) {
-    files.filter(f => f.type.startsWith('image/')).forEach(uploadFile);
+    files.filter(f => f.type.startsWith('image/') || f.type.startsWith('video/')).forEach(uploadFile);
   }
 
   async function uploadFile(file) {
@@ -332,50 +332,58 @@
     const fileName = buildFileName(file, ip);
     const path = `/${fileName}`;
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
-    xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN);
-    xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
-      path: path,
-      mode: 'add',
-      autorename: true,
-      mute: false
-    }));
-    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+    try {
+      const token = await getToken();
 
-    xhr.upload.onprogress = e => {
-      if (e.lengthComputable) {
-        const pct = Math.round(e.loaded / e.total * 100);
-        document.getElementById('pb-' + id).style.width = pct + '%';
-        document.getElementById('st-' + id).textContent = pct + '%';
-      }
-    };
+      // Use XMLHttpRequest for progress tracking but with fresh token
+      await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+        xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
+          path: path, mode: 'add', autorename: true, mute: false
+        }));
+        xhr.setRequestHeader('Content-Type', 'application/octet-stream');
 
-    xhr.onload = () => {
-      const st = document.getElementById('st-' + id);
-      if (xhr.status === 200) {
-        document.getElementById('pb-' + id).style.width = '100%';
-        st.textContent = '✓';
-        st.className = 'queue-status done';
-        setTimeout(() => loadGallery(), 1500);
-        setTimeout(() => {
-          const el = document.getElementById(id);
-          if (el) { el.style.transition = 'opacity 0.5s'; el.style.opacity = '0'; }
-          setTimeout(() => { const el = document.getElementById(id); if (el) el.remove(); }, 500);
-        }, 2500);
-      } else {
-        st.textContent = '✗';
-        st.className = 'queue-status error';
-      }
-    };
+        xhr.upload.onprogress = e => {
+          if (e.lengthComputable) {
+            const pct = Math.round(e.loaded / e.total * 100);
+            document.getElementById('pb-' + id).style.width = pct + '%';
+            document.getElementById('st-' + id).textContent = pct + '%';
+          }
+        };
 
-    xhr.onerror = () => {
-      const st = document.getElementById('st-' + id);
-      st.textContent = '✗';
-      st.className = 'queue-status error';
-    };
+        xhr.onload = () => {
+          const st = document.getElementById('st-' + id);
+          if (xhr.status === 200) {
+            document.getElementById('pb-' + id).style.width = '100%';
+            st.textContent = '✓';
+            st.className = 'queue-status done';
+            setTimeout(() => loadGallery(), 1500);
+            setTimeout(() => {
+              const el = document.getElementById(id);
+              if (el) { el.style.transition = 'opacity 0.5s'; el.style.opacity = '0'; }
+              setTimeout(() => { const el2 = document.getElementById(id); if (el2) el2.remove(); }, 500);
+            }, 2500);
+            resolve();
+          } else {
+            st.textContent = '✗';
+            st.className = 'queue-status error';
+            reject();
+          }
+        };
 
-    xhr.send(file);
+        xhr.onerror = () => {
+          document.getElementById('st-' + id).textContent = '✗';
+          document.getElementById('st-' + id).className = 'queue-status error';
+          reject();
+        };
+
+        xhr.send(file);
+      });
+    } catch (e) {
+      console.error('Upload error:', e);
+    }
   }
 
   // ── GALLERY ──────────────────────────────────────────────────
