@@ -392,10 +392,11 @@
     if (galleryLoading) return;
     galleryLoading = true;
     try {
+      const listToken = await getToken();
       const res = await fetch('https://api.dropboxapi.com/2/files/list_folder', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + await getToken(),
+          'Authorization': 'Bearer ' + listToken,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ path: FOLDER, limit: 200, recursive: false })
@@ -423,10 +424,11 @@
       document.getElementById('galleryEmpty').style.display = 'none';
 
       for (const img of images) {
+        const thumbToken = await getToken();
         const thumbRes = await fetch('https://content.dropboxapi.com/2/files/get_thumbnail_v2', {
           method: 'POST',
           headers: {
-            'Authorization': 'Bearer ' + await getToken(),
+            'Authorization': 'Bearer ' + thumbToken,
             'Dropbox-API-Arg': JSON.stringify({
               resource: { '.tag': 'path', path: img.path_lower },
               format: { '.tag': 'jpeg' },
