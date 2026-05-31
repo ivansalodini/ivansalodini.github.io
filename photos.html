@@ -187,7 +187,7 @@
   <div class="section-label">Carica le tue foto</div>
 
   <div class="drop-zone" id="dropZone">
-    <input type="file" id="fileInput" accept="image/*" multiple>
+    <input type="file" id="fileInput" accept="image/*,video/*" multiple>
     <div class="drop-icon-wrap">
       <svg class="drop-icon" viewBox="0 0 24 24">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -197,7 +197,7 @@
     </div>
     <div class="drop-text">
       <div class="drop-title">Carica le tue foto</div>
-      <div class="drop-sub">Trascina qui oppure <span>seleziona dal dispositivo</span> · JPG, PNG, HEIC</div>
+      <div class="drop-sub">Trascina qui oppure <span>seleziona dal dispositivo</span> · Foto &amp; Video</div>
     </div>
     <button class="drop-btn" tabindex="-1">Sfoglia</button>
   </div>
@@ -220,12 +220,13 @@
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()">×</button>
   <img id="lightboxImg" src="" alt="">
+  <video id="lightboxVideo" controls style="display:none; max-width:90vw; max-height:90vh; border-radius:2px;"></video>
 </div>
 
 <a href="index.html" class="back-link">← Torna al sito</a>
 
 <script>
-  const TOKEN = 'sl.u.AGi4h7OvyEJ_Q0bWGU-qMxVxSZPgGGm3QFEtT2c6B7s3CIdo9juQscEhUR1mjhtmL3wXILwQWmHVmuUY8lEtdKUrmZsWQBU29K4cqz1bgqV7AC9h-r-pQB7BY6YhD8nFnwxsK1a0LSiyCy4a3YswddUfzomfHfC-rXYTM_vQCZvaNhcj5VTkUkeXfNkq90B4S4uZxpibcNR1weGaLUJJ7A1OavxUU2YTaIOtnMwu6ZjJFOlA_MX3Z6DhzDsPYHt9Fe-N8KRPWnEaULVmoMNbVklAZnI49caujV_nRhsG5TL2Y7zwQW0RnmreMNio41PnixO_di6S2xr3xa223BbTspeH8JCmo1ucJ-keTy6E29qEuOyGSNJlp9i_3eSyvZ0yprJST6EnG9YkqYXlkO7K8YBTHjaNW_PTloQUTQvWBl9je2EiLkpnFlxZnAmjGpxfcf7Xy2fSxKkdPdGt4gUFNDFmpp1-J-IYTCpghg-XWbFZsddzmyiQpSeBxbQq1jKD5TbCxI_m75jE3PNOtbz91xqrMneT7qW3lbNSrtBHZHnTRJkiqUxjnbZgGjQMhnJJ0EPV9jBxY8TIDzXr5eCF3QAhb-C4xxe9lf52TbEU1fziRS1FCe81nCYdz3HJkEeqG_RT7UKoJ0yiio6axcznfkldTS2lBir4-MZ4pxd1hMdhCiwO2IbMRv_PUkhxBAnksz2YX2bB2O9WW6PcRilZfCQgRlkSESfjjN68dbYwREjTR6RntGa5cyq8edpM_SJyMPS1f9_sisQmP5_XXwp86iDYhQ3nCQTBguQlQWWYb0KbgbtV4hUESFWDl6Wae5W7bRURoWhYsvAVnoqBCQxijpCQKwahwDhMP7Cg1YlrJkco4H42pk3cqWsfl7nPFLIjlVbJSYF5NvnaSAON89bbt3WpNC0vNJmwil1oPZ_YJb7nxiOHAI3KWst2CPNBXkkNnL9xAHW5B6Ud4U85vwklYnt-D9KtFdZY8vaFGQM3z1ua-jhiHFpfNFSWr4o3M9hkPUXI3tTSCJhpbumKzDmpZSLuOyMbwcuie4u4FNIyXwF_t3CYwPuJu0i0ErK6s-Wiyj1xeU9Ao8HpLAuoPzB6WvLIPgviwVDRmQEJFnGabkHTlrVPdwssTGXziRb7g0FS3kmcsV1Jv6ogfN3HKl-F9tFc4t03NeJWZN9Ssl5cXLY7gjGD5PwWStdKmAUS-y9LkTfTfrxXCBQLGlTtnUoGzSmLQUDvtZ7TlBCYGT3wt3LkaOi9H51mTQQoCKb2OKLqroRlyj2rnaHmVgp_TMTObuJe';
+  const TOKEN = 'sl.u.AGju8nZkAcDQchT_dqYh9QxUkAbtp35nNWj3UlKYXf3vxUsH87sud7t6OO9rx8Rm7VgvuhLm96QmWjMr_GgN6_mj6tJND2GLo4Y77FpSZe_CF_lP1uQe5IUolC6aBbFAhJhUysR0WLPbbF_u7maGnacoQK9IZkPDt07VUPQA4ZOk9sGllSXdZlfzQWjH-oE7Sua_br0hCZvn91ZQXjeOyHjRRYwdyIeM6CoBVbzEOz1Ge6gl15gAOpClWjULifH78RmcL3t_aJNBVoGVt57H4VcqZVHSHRHy3XxAvjsBPwrRk_AAgY1QJ1zwlxDd2ISvO4HhnI7kKT4Qia1MttKA3dMEowRcpvVoGdSidixruYH8vzAOyEBLDPo8Pqv92r6ZK2czyqVxcmkPyPobvkNzgUXEpxsl-3maM-siOHlg8VF_ldbbEsMWlQUm4B6ncwFuO_UY6PTFXwOjkU9iklJfKV36gHcYC4QhtxgT6_X7BaQIdJD0lO2z2uvtOuSZ1I2wWXvfFxNlCjSdKPqp68GX7U5a5BAjaYU-t7Xvhnmo8lZzWp4EF7Z7hNMP0KKS9HZ8Du_pm_XjOjVqxdiIXTdGGKhF9a-0MdsTu1o1N-j-cdpMPvdn7UYxuNOIdngjgFE2YQeWQiMGYxzxz2xHKZaYxj5zIRHhHi3gKFP8eR12yEwV1FrJHjoszAqFPaRozvAw9dh4ugDip2jw1kW1vEdrUBAOW3Poyqe4DdIzEPgFTsK4OXHwjAkA0soGRUlpCBHkK93QWRggEKbhbbNavXQI_DJsRMi3ud_buN9MjVCeeeEznJWnlJoHNbHggK6PiYFqEdN8PLRhiIx5ajRxZXLT6XDQoeHwF3dGRCHfzZCvcZRBnQlRslk7DGRkT065w8APaOr6XyjH6l3Emb7u7J3ockbohvhQ60IqlZFsi_hZ5A26SvvJv0MaIe5NbRzMap0FfSUOqZtu3e_C9A3LJdoENSYw6aVx0T4k8Obnv7jadGyY6i1pRrDrkDNyyNp4Q7iWE2WHNa1cWyjLfLrMkA2bGkU-d9edaijTCZHB1HEfKz4tKWIoNTfhFq1yeY0xNb-dHq8k93e5B_zg3VUR2dOKseP6_LpI2vJfJRT33qyrZzn5RJDn9ZU5KMnMB2toUUKIFPaStjtquXiyKtssnHmW4vaDFk_z_NKxh5GvLjQkTrAULzE6OIRq3eCeRDnNcaBLWNUdBzPe-YmJVS5JkzTg8elO8VEcE1NoiYyZwtNiPQYkAf8mqRqKeyt9oWHeYwZWwGcs5cuUSO1FlMnW9co3OlcfySTBuIg_fROGRmZbNWVFzQ';
   const FOLDER = '';
 
   // ── DRAG & DROP ──────────────────────────────────────────────
@@ -371,7 +372,7 @@
       }
 
       const data = await res.json();
-      const images = data.entries.filter(e => /\.(jpg|jpeg|png|heic|gif|webp)$/i.test(e.name));
+      const images = data.entries.filter(e => /\.(jpg|jpeg|png|heic|gif|webp|mp4|mov|avi|mkv|webm)$/i.test(e.name));
 
       const grid = document.getElementById('galleryGrid');
       grid.innerHTML = '';
@@ -406,7 +407,14 @@
         const div = document.createElement('div');
         div.className = 'gallery-item';
         div.innerHTML = `<img src="${url}" alt="${img.name}" loading="lazy">`;
-        div.onclick = () => openLightbox(url);
+        const isVideo = /\.(mp4|mov|avi|mkv|webm)$/i.test(img.name);
+        if (isVideo) {
+          div.innerHTML = `<video src="${url}" style="width:100%;height:100%;object-fit:cover;" muted playsinline loop></video>`;
+          div.onclick = () => openLightboxVideo(url);
+        } else {
+          div.innerHTML = `<img src="${url}" alt="${img.name}" loading="lazy">`;
+          div.onclick = () => openLightbox(url);
+        }
         grid.appendChild(div);
       }
     } catch (e) {
@@ -420,10 +428,21 @@
   // ── LIGHTBOX ─────────────────────────────────────────────────
   function openLightbox(url) {
     document.getElementById('lightboxImg').src = url;
+    document.getElementById('lightboxImg').style.display = 'block';
+    document.getElementById('lightboxVideo').style.display = 'none';
+    document.getElementById('lightboxVideo').pause && document.getElementById('lightboxVideo').pause();
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function openLightboxVideo(url) {
+    document.getElementById('lightboxVideo').src = url;
+    document.getElementById('lightboxVideo').style.display = 'block';
+    document.getElementById('lightboxImg').style.display = 'none';
     document.getElementById('lightbox').classList.add('open');
   }
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightboxVideo').pause && document.getElementById('lightboxVideo').pause();
+    document.getElementById('lightboxVideo').src = '';
   }
   document.getElementById('lightbox').addEventListener('click', e => {
     if (e.target === e.currentTarget) closeLightbox();
