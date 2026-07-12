@@ -106,6 +106,14 @@
     background: linear-gradient(to right, transparent, rgba(122,98,72,0.2), transparent);
   }
 
+  .qr-url a {
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(177,161,161,0.4);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .qr-url a:hover { color: var(--sepia); border-color: var(--sepia); }
+
   @media print {
     header { padding: 1rem; }
     .download-btn { display: none; }
@@ -129,7 +137,7 @@
     <div class="qr-label">Sito principale</div>
     <div class="qr-box" id="qr1"></div>
     <div class="qr-title">Il sito del matrimonio</div>
-    <div class="qr-url">ivanalessia.com</div>
+    <div class="qr-url"><a href="https://ivanalessia.com" target="_blank">ivanalessia.com</a></div>
     <button class="download-btn" onclick="downloadQR('qr1', 'qr-wedding-site')">Scarica →</button>
   </div>
 
@@ -137,7 +145,7 @@
     <div class="qr-label">Save the Date</div>
     <div class="qr-box" id="qr2"></div>
     <div class="qr-title">Annuncio animato</div>
-    <div class="qr-url">ivanalessia.com/savethedate.html</div>
+    <div class="qr-url"><a href="https://ivanalessia.com/savethedate.html" target="_blank">ivanalessia.com/savethedate.html</a></div>
     <button class="download-btn" onclick="downloadQR('qr2', 'qr-save-the-date')">Scarica →</button>
   </div>
 
@@ -145,7 +153,7 @@
     <div class="qr-label">RSVP</div>
     <div class="qr-box" id="qr3"></div>
     <div class="qr-title">Conferma presenza</div>
-    <div class="qr-url">ivanalessia.com/#rsvp</div>
+    <div class="qr-url"><a href="https://ivanalessia.com/#rsvp" target="_blank">ivanalessia.com/#rsvp</a></div>
     <button class="download-btn" onclick="downloadQR('qr3', 'qr-rsvp')">Scarica →</button>
   </div>
 
@@ -153,7 +161,7 @@
     <div class="qr-label">Foto</div>
     <div class="qr-box" id="qr4"></div>
     <div class="qr-title">Carica le tue foto</div>
-    <div class="qr-url">ivanalessia.com/photos.html</div>
+    <div class="qr-url"><a href="https://ivanalessia.com/photos.html" target="_blank">ivanalessia.com/photos.html</a></div>
     <button class="download-btn" onclick="downloadQR('qr4', 'qr-photos')">Scarica →</button>
   </div>
 
@@ -161,7 +169,7 @@
     <div class="qr-label">Tableau de mariage</div>
     <div class="qr-box" id="qr5"></div>
     <div class="qr-title">Trova il tuo posto</div>
-    <div class="qr-url">ivanalessia.com/tableau-mariage.html</div>
+    <div class="qr-url"><a href="https://ivanalessia.com/tableau-mariage.html" target="_blank">ivanalessia.com/tableau-mariage.html</a></div>
     <button class="download-btn" onclick="downloadQR('qr5', 'qr-tableau-mariage')">Scarica →</button>
   </div>
 
