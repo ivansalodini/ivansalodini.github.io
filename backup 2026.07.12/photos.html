@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le nostre foto e video — Ivan & Alessia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFF8F3;
+    --warm: #F5EDE6;
+    --sepia: #7A6248;
+    --mid: #6E6060;
+    --dark: #000000;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html, body { background: var(--bg); font-family: var(--sans); font-weight: 300; min-height: 100vh; }
+
+  header {
+    text-align: center; padding: 2rem 2rem 1.5rem;
+    
+  }
+  .header-label {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--sepia); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300; color: var(--dark);
+  }
+  header h1 em { font-style: italic; color: var(--sepia); }
+  header p { font-size: 14px; color: var(--mid); margin-top: 0.75rem; line-height: 1.7; }
+
+  .divider {
+    height: 1px; max-width: 780px; margin: 0 auto;
+    background: linear-gradient(to right, transparent, rgba(122,98,72,0.25), transparent);
+  }
+
+  /* UPLOAD AREA */
+  .upload-section { max-width: 680px; margin: 1.5rem auto; padding: 0 2rem; }
+
+  .section-label {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--sepia); font-weight: 500; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(122,98,72,0.35), transparent);
+  }
+
+  .drop-zone {
+    border: 1.5px dashed rgba(122,98,72,0.35);
+    border-radius: 8px; background: var(--warm);
+    padding: 1rem 1.5rem;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .drop-zone:hover { border-color: var(--sepia); background: #EFE3D8; }
+  .drop-zone.dragover { border-color: var(--sepia); background: #EFE3D8; }
+  .drop-zone input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .drop-icon-wrap {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(122,98,72,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .drop-icon {
+    width: 20px; height: 20px;
+    stroke: var(--sepia); fill: none; stroke-width: 1.3;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .drop-text { flex: 1; }
+  .drop-title {
+    font-family: var(--serif); font-size: 1.05rem; color: var(--dark); margin-bottom: 2px;
+  }
+  .drop-sub { font-size: 12px; color: var(--mid); line-height: 1.5; }
+  .drop-sub span { color: var(--sepia); border-bottom: 1px solid rgba(122,98,72,0.3); cursor: pointer; }
+  .drop-btn {
+    flex-shrink: 0;
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #ffffff; background: var(--sepia);
+    border: none; border-radius: 2px;
+    padding: 8px 16px; cursor: pointer;
+    white-space: nowrap; pointer-events: none;
+  }
+
+  /* PROGRESS */
+  .upload-queue { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 10px; }
+  .queue-item {
+    background: var(--warm); border: 1px solid rgba(122,98,72,0.15);
+    border-radius: 4px; padding: 10px 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .queue-thumb {
+    width: 32px; height: 32px; border-radius: 2px;
+    object-fit: cover; flex-shrink: 0;
+  }
+  .queue-info { flex: 1; min-width: 0; }
+  .queue-name {
+    font-size: 13px; color: var(--dark); white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px;
+  }
+  .progress-bar-wrap {
+    height: 4px; background: rgba(122,98,72,0.15); border-radius: 2px; overflow: hidden;
+  }
+  .progress-bar { height: 100%; background: var(--sepia); border-radius: 2px; transition: width 0.3s; }
+  .queue-status { font-size: 11px; color: var(--mid); flex-shrink: 0; }
+  .queue-status.done { color: var(--sepia); }
+  .queue-status.error { color: #c0392b; }
+
+  /* GALLERY */
+  .gallery-section { max-width: 960px; margin: 3rem auto 4rem; padding: 0 2rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px; margin-top: 1rem;
+  }
+  .gallery-item {
+    aspect-ratio: 1; border-radius: 4px; overflow: hidden;
+    background: var(--warm); cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .gallery-empty {
+    text-align: center; padding: 3rem; color: var(--mid);
+    font-family: var(--serif); font-size: 1.1rem; font-style: italic;
+  }
+  .gallery-loading {
+    text-align: center; padding: 2rem; color: var(--mid); font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 2px; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 24px;
+    color: rgba(255,255,255,0.7); font-size: 28px; cursor: pointer;
+    background: none; border: none; line-height: 1;
+    transition: color 0.2s;
+  }
+  .lightbox-close:hover { color: #fff; }
+
+  /* BACK LINK */
+  .back-link {
+    display: block; text-align: center; padding: 1rem;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none;
+    border-top: 1px solid rgba(122,98,72,0.15);
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--sepia); }
+
+  @media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Ivan &amp; Alessia · 12 Giugno 2027</div>
+  <h1>Le nostre <em>foto e video</em></h1>
+  <p class="it">Condividete i vostri scatti più belli del nostro giorno speciale!</p>
+  <p class="en" style="display:none;">Share your favourite shots from our special day!</p>
+</header>
+
+
+<!-- UPLOAD -->
+<div class="upload-section">
+  <div class="section-label">Carica le tue foto e video</div>
+
+  <div class="drop-zone" id="dropZone">
+    <input type="file" id="fileInput" accept="image/*,video/*" multiple>
+    <div class="drop-icon-wrap">
+      <svg class="drop-icon" viewBox="0 0 24 24">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+    </div>
+    <div class="drop-text">
+      <div class="drop-title">Carica le tue foto e video</div>
+      <div class="drop-sub">Trascina qui oppure <span>seleziona dal dispositivo</span> · Foto &amp; Video</div>
+    </div>
+    <button class="drop-btn" tabindex="-1">Sfoglia</button>
+  </div>
+
+  <div class="upload-queue" id="uploadQueue"></div>
+</div>
+
+
+<!-- GALLERY -->
+<div class="gallery-section">
+  <div class="section-label">Tutte le foto e video</div>
+  <div class="gallery-loading" id="galleryLoading">Caricamento...</div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+  <div class="gallery-empty" id="galleryEmpty" style="display:none;">
+    Nessuna foto ancora — sii il primo a condividere un ricordo!
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="" alt="">
+  <video id="lightboxVideo" controls style="display:none; max-width:90vw; max-height:90vh; border-radius:2px;"></video>
+</div>
+
+<a href="index.html" class="back-link">← Torna al sito</a>
+
+<script>
+  // ── AUTH — refresh token never expires ──────────────────────
+  const APP_KEY      = '8rip1zq2ias1kx3';
+  const APP_SECRET   = 'v3dyfomb0ew4obw';
+  const REFRESH_TOKEN = 'Py6nLfy7jxcAAAAAAAAAAVD8J5XevP79Jl08C9rLPmamyaUUcMGZ1-biF1e7oUI2';
+
+  let accessToken = null;
+  let tokenExpiry = 0;
+
+  async function getToken() {
+    if (accessToken && Date.now() < tokenExpiry) return accessToken;
+    const res = await fetch('https://api.dropbox.com/oauth2/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: REFRESH_TOKEN,
+        client_id: APP_KEY,
+        client_secret: APP_SECRET
+      })
+    });
+    const data = await res.json();
+    accessToken = data.access_token;
+    tokenExpiry = Date.now() + (data.expires_in - 300) * 1000; // refresh 5 min early
+    return accessToken;
+  }
+  const FOLDER = '';
+
+  // ── DRAG & DROP ──────────────────────────────────────────────
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('dragover');
+    handleFiles(Array.from(e.dataTransfer.files));
+  });
+  fileInput.addEventListener('change', () => handleFiles(Array.from(fileInput.files)));
+
+  // ── HELPERS ──────────────────────────────────────────────────
+  async function getIP() {
+    try {
+      const r = await fetch('https://api.ipify.org?format=json');
+      const d = await r.json();
+      return d.ip;
+    } catch { return 'UNKNOWN'; }
+  }
+
+  function getDeviceModel() {
+    const ua = navigator.userAgent;
+    if (/iPhone/.test(ua)) {
+      const m = ua.match(/iPhone OS ([\d_]+)/);
+      return 'iPhone' + (m ? '_iOS' + m[1].replace(/_/g, '.') : '');
+    }
+    if (/iPad/.test(ua)) return 'iPad';
+    if (/Android/.test(ua)) {
+      const m = ua.match(/;\s*([^;)]+)\sBuild/);
+      return m ? m[1].trim().replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_-]/g, '') : 'Android';
+    }
+    if (/Windows/.test(ua)) return 'Windows';
+    if (/Mac/.test(ua)) return 'Mac';
+    if (/Linux/.test(ua)) return 'Linux';
+    return 'Unknown';
+  }
+
+  function buildFileName(file, ip) {
+    const now = new Date();
+    const pad = (n, l=2) => String(n).padStart(l, '0');
+    const YYYY = now.getFullYear();
+    const MM   = pad(now.getMonth() + 1);
+    const DD   = pad(now.getDate());
+    const HH   = pad(now.getHours());
+    const UU   = pad(now.getMinutes());
+    const SS   = pad(now.getSeconds());
+    const GG   = pad(now.getMilliseconds(), 3);
+    const model = getDeviceModel();
+    const ext = file.name.split('.').pop().toLowerCase();
+    return `_${YYYY}.${MM}.${DD}_${HH}.${UU}.${SS}.${GG}_${ip}_${model}.${ext}`;
+  }
+
+  // ── UPLOAD ───────────────────────────────────────────────────
+  function handleFiles(files) {
+    files.filter(f => f.type.startsWith('image/') || f.type.startsWith('video/')).forEach(uploadFile);
+  }
+
+  async function uploadFile(file) {
+    const queue = document.getElementById('uploadQueue');
+    const id = 'q' + Date.now() + Math.random().toString(36).slice(2);
+
+    const thumb = URL.createObjectURL(file);
+    const item = document.createElement('div');
+    item.className = 'queue-item';
+    item.id = id;
+    item.innerHTML = `
+      <img class="queue-thumb" src="${thumb}" alt="">
+      <div class="queue-info">
+        <div class="queue-name">${file.name}</div>
+        <div class="progress-bar-wrap"><div class="progress-bar" id="pb-${id}" style="width:0%"></div></div>
+      </div>
+      <div class="queue-status" id="st-${id}">0%</div>`;
+    queue.prepend(item);
+
+    const ip = await getIP();
+    const fileName = buildFileName(file, ip);
+    const path = `/${fileName}`;
+
+    try {
+      const token = await getToken();
+
+      // Use XMLHttpRequest for progress tracking but with fresh token
+      await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+        xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
+          path: path, mode: 'add', autorename: true, mute: false
+        }));
+        xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+
+        xhr.upload.onprogress = e => {
+          if (e.lengthComputable) {
+            const pct = Math.round(e.loaded / e.total * 100);
+            document.getElementById('pb-' + id).style.width = pct + '%';
+            document.getElementById('st-' + id).textContent = pct + '%';
+          }
+        };
+
+        xhr.onload = () => {
+          const st = document.getElementById('st-' + id);
+          if (xhr.status === 200) {
+            document.getElementById('pb-' + id).style.width = '100%';
+            st.textContent = '✓';
+            st.className = 'queue-status done';
+            setTimeout(() => loadGallery(), 1500);
+            setTimeout(() => {
+              const el = document.getElementById(id);
+              if (el) { el.style.transition = 'opacity 0.5s'; el.style.opacity = '0'; }
+              setTimeout(() => { const el2 = document.getElementById(id); if (el2) el2.remove(); }, 500);
+            }, 2500);
+            resolve();
+          } else {
+            st.textContent = '✗';
+            st.className = 'queue-status error';
+            reject();
+          }
+        };
+
+        xhr.onerror = () => {
+          document.getElementById('st-' + id).textContent = '✗';
+          document.getElementById('st-' + id).className = 'queue-status error';
+          reject();
+        };
+
+        xhr.send(file);
+      });
+    } catch (e) {
+      console.error('Upload error:', e);
+    }
+  }
+
+  // ── GALLERY ──────────────────────────────────────────────────
+  let galleryLoading = false;
+  async function loadGallery() {
+    if (galleryLoading) return;
+    galleryLoading = true;
+    try {
+      // Ensure token is available first
+      await getToken();
+      const listToken = await getToken();
+      const res = await fetch('https://api.dropboxapi.com/2/files/list_folder', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + listToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ path: FOLDER, limit: 200, recursive: false })
+      });
+
+      document.getElementById('galleryLoading').style.display = 'none';
+
+      if (!res.ok) {
+        document.getElementById('galleryEmpty').style.display = 'block';
+        return;
+      }
+
+      const data = await res.json();
+      const images = data.entries.filter(e => /\.(jpg|jpeg|png|heic|gif|webp|mp4|mov|avi|mkv|webm)$/i.test(e.name));
+
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+      document.getElementById('galleryEmpty').style.display = 'none';
+
+      if (images.length === 0) {
+        document.getElementById('galleryEmpty').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('galleryEmpty').style.display = 'none';
+
+      for (const img of images) {
+        const thumbToken = await getToken();
+        const thumbRes = await fetch('https://content.dropboxapi.com/2/files/get_thumbnail_v2', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + thumbToken,
+            'Dropbox-API-Arg': JSON.stringify({
+              resource: { '.tag': 'path', path: img.path_lower },
+              format: { '.tag': 'jpeg' },
+              size: { '.tag': 'w640h480' },
+              mode: { '.tag': 'fitone_bestfit' }
+            }),
+            'Content-Type': ''
+          }
+        });
+
+        if (!thumbRes.ok) continue;
+        const blob = await thumbRes.blob();
+        const url = URL.createObjectURL(blob);
+
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `<img src="${url}" alt="${img.name}" loading="lazy">`;
+        const isVideo = /\.(mp4|mov|avi|mkv|webm)$/i.test(img.name);
+        if (isVideo) {
+          div.innerHTML = `<video src="${url}" style="width:100%;height:100%;object-fit:cover;" muted playsinline loop></video>`;
+          div.onclick = () => openLightboxVideo(url);
+        } else {
+          div.innerHTML = `<img src="${url}" alt="${img.name}" loading="lazy">`;
+          div.onclick = () => openLightbox(url);
+        }
+        grid.appendChild(div);
+      }
+    } catch (e) {
+      document.getElementById('galleryLoading').style.display = 'none';
+      document.getElementById('galleryEmpty').style.display = 'block';
+    } finally {
+      galleryLoading = false;
+    }
+  }
+
+  // ── LIGHTBOX ─────────────────────────────────────────────────
+  function openLightbox(url) {
+    document.getElementById('lightboxImg').src = url;
+    document.getElementById('lightboxImg').style.display = 'block';
+    document.getElementById('lightboxVideo').style.display = 'none';
+    document.getElementById('lightboxVideo').pause && document.getElementById('lightboxVideo').pause();
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function openLightboxVideo(url) {
+    document.getElementById('lightboxVideo').src = url;
+    document.getElementById('lightboxVideo').style.display = 'block';
+    document.getElementById('lightboxImg').style.display = 'none';
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightboxVideo').pause && document.getElementById('lightboxVideo').pause();
+    document.getElementById('lightboxVideo').src = '';
+  }
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeLightbox();
+  });
+
+  // Load gallery on page open
+  loadGallery().catch(e => console.warn('Gallery load error:', e));
+</script>
+</body>
+</html>
